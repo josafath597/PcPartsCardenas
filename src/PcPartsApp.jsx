@@ -1,12 +1,13 @@
 import { AppRouter } from './router/AppRouter'
 import { AppTheme } from './theme'
-import { NavBar } from './ui/NavBar'
+import { UiLayout } from './ui/layout/UiLayout'
 
 export const PcPartsApp = () => {
   return (
     <AppTheme>
-      <NavBar />
-      <AppRouter/>
+      <UiLayout>
+        <AppRouter/>
+      </UiLayout>
     </AppTheme>
   )
 }
