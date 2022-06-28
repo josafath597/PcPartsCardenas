@@ -6,7 +6,7 @@ export const AppRouter = () => {
   return (
     <Routes>
 
-        <Route path="/home" element={<PcPartsRouter />} />
+        <Route path="/home/*" element={<PcPartsRouter />} />
         <Route path="/auth/*" element={<AuthRouter />} />
 
         <Route path="/*" element={ <Navigate to='/home' /> } />

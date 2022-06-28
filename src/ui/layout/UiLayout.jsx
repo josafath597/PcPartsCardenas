@@ -1,4 +1,4 @@
-import { Box } from "@mui/material"
+import { Box, Toolbar } from "@mui/material"
 import { NavBar } from "../components/NavBar"
 
 export const UiLayout = ({children}) => {
@@ -9,7 +9,18 @@ export const UiLayout = ({children}) => {
     }}>
 
         <NavBar />
-        {children}
+
+
+        <Box
+            component="main"
+            sx={{
+               flexGrow: 0, p: 0  
+            }}
+        >
+            <Toolbar />
+            {children}
+
+        </Box>
     </Box>
   )
 }
