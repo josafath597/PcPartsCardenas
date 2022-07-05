@@ -1,16 +1,13 @@
 import { Box, Container, Grid, Typography } from '@mui/material'
-import { useFetch } from '../../hooks/useFetch';
+import { graphics } from '../../data/graphics';
 import { ItemCard } from './ItemCard';
 
 
 
 export const ProductItems =  () => {
-
-  const {data , isLoading , hasError} = useFetch('/data/graphics.json');
   
-
-  console.log(data, isLoading, hasError);
-
+  
+  
 
   return (
     <Box
@@ -25,7 +22,7 @@ export const ProductItems =  () => {
             </Typography>
         </Grid>
         {
-              data.map((item) => (
+              graphics.map((item) => (
                 <Grid item xs={12} md={4}>
                   <ItemCard key={item.id} {...item} />
                 </Grid>

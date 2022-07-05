@@ -1,7 +1,8 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
-import React from 'react'
+import { Link as RouterLink } from "react-router-dom"
 
 export const ItemCard = ({
+    id,
     name,
     image,
     price
@@ -23,7 +24,9 @@ export const ItemCard = ({
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Ver mas</Button>
+        <Button component={ RouterLink } size="small" to={`/home/${id}`}>
+          Ver mas
+        </Button>
       </CardActions>
     </Card>
   )
