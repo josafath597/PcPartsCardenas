@@ -1,6 +1,12 @@
+import { AppFooter, ProductHero, ProductItems, ProductValues } from "../components"
 
 export const PcPartsPage = () => {
   return (
-    <div>PcPartsPage</div>
+    <>
+      <ProductHero/>
+      <ProductValues/>
+      <ProductItems/>
+      <AppFooter/>
+    </>
   )
 }

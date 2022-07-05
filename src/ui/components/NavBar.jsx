@@ -33,10 +33,10 @@ export const NavBar = () => {
           <Grid container sx={{display: 'flex', justifyContent: 'space-between'}}>
 
             <Grid item sx={{ display: { xs: 'none',sm: 'flex', md: 'flex' }, alignItems: 'center' }} >
-              <IconButton edge="start" color="inherit" component={ RouterLink } to='/home'>
+              <IconButton edge="start" component={ RouterLink } to='/home' color="text" >
                 <InstallDesktopIcon fontSize='large'/>
               </IconButton>
-              <Typography variant="h6" component="div" sx={{ml: 4 , fontWeight: 700, }}>
+              <Typography variant="h6" component="div" color="text" sx={{ml: 4 , fontWeight: 700 }} >
                 PcParts
               </Typography>
             </Grid>
@@ -45,9 +45,9 @@ export const NavBar = () => {
             <Grid item sx={{ width: { xs: '100%',sm: '50%'}, display: 'flex', justifyContent: { xs: 'space-between',sm: 'flex-end'}, }}>
     
                   <Tooltip title="Shopping Cart">
-                    <IconButton sx={{ mr:{xs:1, sm:3, md:3, lg:3} }} color="inherit" component={ RouterLink } to='/home/shop'>
+                    <IconButton sx={{ mr:{xs:1, sm:3, md:3, lg:3} }} component={ RouterLink } to='/home/shop'>
                       <Badge badgeContent={3} color="error">
-                        <ShoppingCartIcon sx={{ color: 'Menu' }} fontSize='large'/>
+                        <ShoppingCartIcon fontSize='large' color="text"/>
                       </Badge>
                     </IconButton>
                   </Tooltip>

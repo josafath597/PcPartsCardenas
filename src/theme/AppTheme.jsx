@@ -1,5 +1,5 @@
-import { ThemeProvider } from "@emotion/react"
-import { CssBaseline } from "@mui/material"
+
+import { CssBaseline, ThemeProvider } from "@mui/material"
 import { blackTheme } from "./purpleTheme"
 
 export const AppTheme = ({children}) => {

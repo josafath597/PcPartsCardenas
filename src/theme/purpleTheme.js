@@ -5,7 +5,6 @@ export const blackTheme = createTheme({
     palette: {
         primary: {
             main: "#1B2125",
-
         },
         secondary: {
             main: "#593F62"
@@ -14,9 +13,13 @@ export const blackTheme = createTheme({
             main: red.A400
         },
         background: {
-            default: "#F5F5F5"
+            main: "#F5F5F5"
+        },
+        button: {
+            main: "#76B900"
+        },
+        text: {
+            main: "#fff"
         }
-
-
     }
 });
