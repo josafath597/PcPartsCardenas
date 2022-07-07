@@ -19,7 +19,10 @@ export const blackTheme = createTheme({
             main: "#76B900"
         },
         text: {
-            main: "#fff"
+            main: "#fff",
+            secondary: "#DFDEDE"
+
         }
+
     }
 });

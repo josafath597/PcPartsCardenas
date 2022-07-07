@@ -1,4 +1,5 @@
 import { Box, Toolbar } from "@mui/material"
+import { AppFooter } from "../components/AppFooter"
 import { NavBar } from "../components/NavBar"
 
 export const UiLayout = ({children}) => {
@@ -21,6 +22,8 @@ export const UiLayout = ({children}) => {
             {children}
 
         </Box>
+
+        <AppFooter />
     </Box>
   )
 }

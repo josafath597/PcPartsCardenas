@@ -1,4 +1,4 @@
-import { AppFooter, ProductHero, ProductItems, ProductValues } from "../components"
+import { ProductHero, ProductItems, ProductValues } from "../components"
 
 export const PcPartsPage = () => {
   return (
@@ -6,7 +6,6 @@ export const PcPartsPage = () => {
       <ProductHero/>
       <ProductValues/>
       <ProductItems/>
-      <AppFooter/>
     </>
   )
 }
