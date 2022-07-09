@@ -1,10 +1,15 @@
 import { Box, Container, Grid, Typography } from '@mui/material'
-import { graphics } from '../../data/graphics';
+import { useFetch } from '../../hooks/useFetch';
 import { ItemCard } from './ItemCard';
 
 
 
 export const ProductItems =  () => {
+
+
+  const graphics = useFetch('/public/data/data.json');
+
+
   
   
   
@@ -13,6 +18,7 @@ export const ProductItems =  () => {
     <Box
       component="section"
       sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'text' }}
+      id="graphics"
     >
       <Container sx={{ mt: 1, mb: 20, display: 'flex', position: 'relative' }}>
         <Grid container spacing={2}>
@@ -22,8 +28,8 @@ export const ProductItems =  () => {
             </Typography>
         </Grid>
         {
-              graphics.map((item) => (
-                <Grid item xs={12} md={4}>
+              graphics.map((item, index) => (
+                <Grid key={index} item xs={12} md={4}>
                   <ItemCard key={item.id} {...item} />
                 </Grid>
                   ))

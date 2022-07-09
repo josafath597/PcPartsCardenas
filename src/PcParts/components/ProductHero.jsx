@@ -34,7 +34,7 @@ export const ProductHero = () => {
         color="button"
         size="large"
         component="a"
-        href="#"
+        href="#graphics"
         sx={{ minWidth: 200 }}
       >
         VER CATALOGO
