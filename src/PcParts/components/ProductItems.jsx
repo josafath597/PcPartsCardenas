@@ -1,20 +1,23 @@
-import { Box, Container, Grid, Typography } from '@mui/material'
+import { Box, CircularProgress, Container, Grid, Typography } from '@mui/material';
 import { useFetch } from '../../hooks/useFetch';
+import { ItemLayout } from '../layout/ItemLayout';
+import { URL } from '../Url';
 import { ItemCard } from './ItemCard';
 
 
 
 export const ProductItems =  () => {
 
-
-  const graphics = useFetch('/public/data/data.json');
-
-
-  
-  
-  
-
+  const {data, isLoading} = useFetch(URL);
+  console.log(data);
+ 
   return (
+    isLoading ?
+            
+        <ItemLayout> <CircularProgress /> </ItemLayout> 
+            
+        :
+
     <Box
       component="section"
       sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'text' }}
@@ -28,7 +31,7 @@ export const ProductItems =  () => {
             </Typography>
         </Grid>
         {
-              graphics.map((item, index) => (
+              data.map((item, index) => (
                 <Grid key={index} item xs={12} md={4}>
                   <ItemCard key={item.id} {...item} />
                 </Grid>
