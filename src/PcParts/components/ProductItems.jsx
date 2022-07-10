@@ -1,6 +1,6 @@
 import { Box, CircularProgress, Container, Grid, Typography } from '@mui/material';
 import { useFetch } from '../../hooks/useFetch';
-import { ItemLayout } from '../layout/ItemLayout';
+import { SpinnerLayout } from '../layout/SpinnerLayout';
 import { URL } from '../Url';
 import { ItemCard } from './ItemCard';
 
@@ -9,13 +9,16 @@ import { ItemCard } from './ItemCard';
 export const ProductItems =  () => {
 
   const {data, isLoading} = useFetch(URL);
-  console.log(data);
  
   return (
     isLoading ?
-            
-        <ItemLayout> <CircularProgress /> </ItemLayout> 
-            
+        
+    <SpinnerLayout>
+      <Box sx={{ display: 'flex' }}>
+          <CircularProgress />
+      </Box>
+    </SpinnerLayout>
+        
         :
 
     <Box
@@ -32,9 +35,7 @@ export const ProductItems =  () => {
         </Grid>
         {
               data.map((item, index) => (
-                <Grid key={index} item xs={12} md={4}>
                   <ItemCard key={item.id} {...item} />
-                </Grid>
                   ))
         }
         </Grid>

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { GetGraphicsById } from "../../selectors/GetGraphicsById";
-import { ItemLayout } from "../layout/ItemLayout";
+import { SpinnerLayout } from "../layout/SpinnerLayout";
 
 const initialState = {
     "name": "",
@@ -41,7 +41,7 @@ export const ItemPage = () => {
         
     const {name, price, image, stock, description:{p1, p2} } = initialState;
 
-    const [quantity, setQuantity] = useState(48);
+    const [quantity, setQuantity] = useState(1);
     const [alert, setAlert] = useState(false);
 
     const handleAddStock = (data = 0) => {
@@ -67,10 +67,12 @@ export const ItemPage = () => {
     return (
 
         isLoading ?
-            
-        <Box sx={{ display: 'flex' }}>
-        <CircularProgress />
-        </Box>
+
+        <SpinnerLayout>
+            <Box sx={{ display: 'flex' }}>
+                <CircularProgress />
+            </Box>
+        </SpinnerLayout>    
             
         :
              
