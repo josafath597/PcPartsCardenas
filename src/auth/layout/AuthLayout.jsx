@@ -10,8 +10,8 @@ export const AuthLayout = ({children, title = ''} ) => {
       justifyContent="flex-start"
 
       sx={{
-        minHeight: "100vh",
-        backgroundColor: "secondary.main",
+        minHeight: "70vh",
+        backgroundColor: "grey.secondary",
         padding: 4,
       }}
       >
@@ -21,9 +21,9 @@ export const AuthLayout = ({children, title = ''} ) => {
         xs= { 3 } 
         sx={{
             width: { xs: "100%", md: "50%" },
-            backgroundColor: "white",
+            backgroundColor: "text.main",
             padding: 3,
-            borderRadius: 2,
+            
         }}
       >
 

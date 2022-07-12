@@ -23,7 +23,7 @@ export const ProductItems =  () => {
 
     <Box
       component="section"
-      sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'text' }}
+      sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'grey.main' }}
       id="graphics"
     >
       <Container sx={{ mt: 1, mb: 20, display: 'flex', position: 'relative' }}>

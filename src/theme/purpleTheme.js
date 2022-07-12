@@ -21,8 +21,12 @@ export const blackTheme = createTheme({
         text: {
             main: "#fff",
             secondary: "#DFDEDE"
-
+        },
+        grey: {
+            main: "#F5F5F5",
+            secondary: "#DFDEDE"
         }
+
 
     }
 });
