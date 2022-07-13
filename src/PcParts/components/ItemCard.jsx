@@ -1,12 +1,21 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { useState } from 'react';
 import { Link as RouterLink } from "react-router-dom"
+import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { ItemDetail } from './ItemDetail';
 
-export const ItemCard = ({
-    id,
-    name,
-    image,
-    price
-}) => {
+export const ItemCard = (props) => {
+  const {id, name, price, image} = props;
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Grid item xs={12} md={4}>
       <Card sx={{ maxWidth: 400 , mb:3 }}>
@@ -25,11 +34,14 @@ export const ItemCard = ({
           </Typography>
         </CardContent>
         <CardActions>
-          <Button component={ RouterLink } size="small" to={`/home/${id}`}>
+          {/* <Button component={ RouterLink } size="small" to={`/home/${id}`}>
             Ver mas
-          </Button>
+          </Button> */}
+            <ItemDetail id={id} open={open} handleClose={handleClose} handleClickOpen={handleClickOpen} {...props}/>
+
         </CardActions>
       </Card>
+
     </Grid>
   )
 }

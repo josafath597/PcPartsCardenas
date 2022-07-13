@@ -40,7 +40,7 @@ export const ProductValues = () => {
                   Envios Gratis
                 </Typography>
                 <Typography variant="h5" textAlign={'center'} sx={{ fontSize: 18 }}>
-                  Envíos seguros a todo el país gratis en compras superiores a $599
+                  Envíos seguros a todo el país gratis en compras superiores a $70 USD.
                 </Typography>
               </Box>
             </Grid>
