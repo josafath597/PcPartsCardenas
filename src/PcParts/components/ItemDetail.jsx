@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, ButtonGroup, Dialog, DialogContent, DialogContentText, DialogTitle, Grid, Typography } from "@mui/material";
+import { Alert, Box, Button, ButtonGroup, Dialog, DialogContent, DialogContentText, DialogTitle, Grid, Typography } from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 export const ItemDetail = ({ open, handleClose , handleClickOpen , name, image, price, stock}) => {
@@ -62,7 +62,9 @@ export const ItemDetail = ({ open, handleClose , handleClickOpen , name, image, 
                     </ButtonGroup>  
                     <Button variant="contained" sx={{bgcolor:'secondary.main'}}>Añadir al Carrito <ShoppingCartIcon sx={{ml: 1}}/> </Button>
                 </Grid>
-
+                {
+                    alert && <Alert severity="error" sx={{mt:2}}> No tenemos stock suficiente </Alert>
+                }
             </Grid>
           </DialogContentText>
         </DialogContent>
