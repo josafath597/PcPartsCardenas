@@ -1,11 +1,10 @@
-import { ProductHero, ProductItems, ProductValues } from "../components"
+import { ProductHero, ProductValues } from "../components"
 
 export const PcPartsPage = () => {
   return (
     <>
       <ProductHero/>
       <ProductValues/>
-      <ProductItems/>
     </>
   )
 }

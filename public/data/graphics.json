@@ -2,6 +2,7 @@
     {
         "id": "ASUS_RTX2060_SUPER",
         "name": "ASUS ROG Strix GeForce RTX 2060 Super EVO",
+        "category": "Graphics_Card",
         "price": "$600.00 USD",
         "image": "https://images-na.ssl-images-amazon.com/images/I/81VUVvrPuuL.__AC_SX300_SY300_QL70_ML2_.jpg",
         "stock": 10,
@@ -13,6 +14,7 @@
     {
         "id": "PNY_RTX2080_TI",
         "name": "PNY GeForce RTX 2080 Ti",
+        "category": "Graphics_Card",
         "price": "$1,100.00 USD",
         "image": "https://m.media-amazon.com/images/I/71hfsByBf7L._AC_SY450_.jpg",
         "stock": 10,
@@ -24,6 +26,7 @@
     {
         "id": "GIGABYTE_RTX3070_OC",
         "name": "Gigabyte GeForce RTX 3070 Vision OC",
+        "category": "Graphics_Card",
         "price": "$900.00 USD",
         "image": "https://m.media-amazon.com/images/I/71zBEiajctL._AC_SY450_.jpg",
         "stock": 10,
@@ -35,6 +38,7 @@
     {
         "id": "GIGABYTE_GTX1650",
         "name": "Gigabyte GeForce GTX 1650",
+        "category": "Graphics_Card",
         "price": "$250.00 USD",
         "image": "https://m.media-amazon.com/images/I/71qxEY6PtiL._AC_SX355_.jpg",
         "stock": 10,
@@ -46,6 +50,7 @@
     {
         "id": "GIGABYTE_RTX2060_OC",
         "name": "Gigabyte GeForce RTX 2060 WINDFORCE OC 6G",
+        "category": "Graphics_Card",
         "price": "$500.00 USD",
         "image": "https://m.media-amazon.com/images/I/616xFcegeQL._AC_SY355_.jpg",
         "stock": 10,
@@ -57,6 +62,7 @@
     {
         "id": "ASUS_RTX3070_OC",
         "name": "ASUS GeForce RTX 3070 Dual OC",
+        "category": "Graphics_Card",
         "price": "$720.00 USD",
         "image": "https://m.media-amazon.com/images/I/71138o+E0QL._AC_SX355_.jpg",
         "stock": 10,
@@ -69,6 +75,7 @@
     {
         "id": "GIGABYTE_RTX3070__MASTER",
         "name": "Gigabyte AORUS GeForce RTX 3070 MASTER",
+        "category": "Graphics_Card",
         "price": "$800.00 USD",
         "image": "https://m.media-amazon.com/images/I/71If+Mn0ByL._AC_SY355_.jpg",
         "stock": 10,
@@ -80,6 +87,7 @@
     {
         "id": "ASUS_GTX1650",
         "name": "Asus GeForce GTX 1650 Phoenix",
+        "category": "Graphics_Card",
         "price": "$300.00 USD",
         "image": "https://m.media-amazon.com/images/I/810kcyrSx-L._AC_SY355_.jpg",
         "stock": 10,
@@ -92,6 +100,7 @@
     {
         "id": "ASUS_GTX1050_TI",
         "name": "ASUS Cerberus GeForce GTX 1050 Ti OC Edition",
+        "category": "Graphics_Card",
         "price": "$350.00 USD",
         "image": "https://m.media-amazon.com/images/I/613ZzkRXGyL._AC_SY355_.jpg",
         "stock": 10,
@@ -99,6 +108,89 @@
             "p1": "La ASUS Cerberus GeForce GTX 1050 Ti OC Edition está diseñada con una placa trasera resistente para proteger los componentes sensibles en la parte posterior de la tarjeta y proporcionar refuerzo para la placa de circuito. Esta robusta placa posterior está acentuada con llamativas líneas rojas. Los dos ventiladores optimizados cuidadosamente seleccionados por los ingenieros impulsan un rendimiento de flujo de aire 2 veces mayor, combinando una refrigeración mejorada con un entorno informático y de juegos más agradable.",
 
             "p2": "Cuenta con certificación IP5X de resistencia al polvo, para ser más fiables y durar más tiempo, los ventiladores de las Cerberus GeForce cuentan con certificación de resistencia al polvo IP5X (Código IP). Este estricto proceso de certificación asegura una ventilación óptima bajo condiciones de trabajo extremas. Las tarjetas gráficas de ASUS se fabrican con la tecnología Auto-Extreme asegurando la máxima calidad y rendimiento eliminando las posibles inconsistencias durante la fabricación. Además, este sistema de fabricación es más respetuoso con el medio ambiente, ya que no utiliza químicos agresivos y reduce el consumo energético el 50%.Con el fin de aumentar la fiabilidad, los ingenieros de ASUS han diseñado esta gráfica utilizando componentes fabricados en aleaciones de alta calidad. Los componentes Super Alloy Power II son más eficientes, reducen la pérdida energética y se calientan un 50% menos que los componentes habitualmente empleados."
+        }
+    },
+    {
+        "id": "RY7-5800X",
+        "name": "Ryzen 7 5800X",
+        "category": "Processors",
+        "price": "$330.00 USD",
+        "image": "https://m.media-amazon.com/images/I/61DYLoyNRWL._AC_SX355_.jpg",
+        "stock": 7,
+        "description": {
+            "p1": "Este asombroso procesador está cercano a asemejarse al cerebro humano. Tiene una arquitectura Zen 3 en 7nm, además de 8 núcleos y 16 hilos, a 3.8 GHz-4,7 GHz. Cuenta con nada menos que 32 MB de caché L3 y un TDP de 105 vatios.",
+
+            "p2": "Soporta el overclock (aumento de la velocidad del reloj de componentes electrónicos) y posee un socket AM4 (chipset B450 o superior). Por todas sus propiedades, este dispositivo forma parte de los procesadores de alta gama para presupuestos holgados."
+        }
+
+    },
+    {
+        "id": "RY5-5600X",
+        "name": "Ryzen 5 5600X",
+        "category": "Processors",
+        "price": "$174.00 USD",
+        "image": "https://m.media-amazon.com/images/I/61vGQNUEsGL._AC_SX355_.jpg",
+        "stock": 7,
+        "description": {
+            "p1": "Según varias reseñas y opiniones, es un procesador bastante potente con una arquitectura Zen 3 en 7 nm.",
+
+            "p2": "Este procesador posee 6 núcleos y 12 hilos a 3,7 GHz - 4,6 GHz, además de 31 MB de caché L3. Su TDP es de 65 vatios e incluye un ventilador. Su socket AM4 (chipset B450 o superior) incrementa su rendimiento. Asismimo, cabe destacar que soporta el overclock de manera fluida y cuenta con un elevado IPC (indicador de rendimiento del procesador)."
+        }
+
+    },
+    {
+        "id": "ICI7-10700",
+        "name": "Intel Core i7 10700K",
+        "category": "Processors",
+        "price": "$328.00 USD",
+        "image": "https://images-na.ssl-images-amazon.com/images/I/71P3chRzgNL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
+        "stock": 7,
+        "description": {
+            "p1": "Algunas opiniones indican que este procesador puede ser catalogado como de gama media-alta, a un precio accesible. Su arquitectura es Comet Lake-S en proceso de 14 nm++.",
+
+            "p2": "Cuenta con 8 núcleos y 16 hilos a 2,9 GHz-4,8 GHz, modo normal y turbo. Tiene además 16 MB de caché L3. Su TDP es de 65 vatios e incluye ventilador.Soporta aplicaciones profesionales exigentes, pero no el overclock. Su socket es LGA1200 (chipset 400)."
+        }
+
+    },
+    {
+        "id": "ICI5-10400F",
+        "name": "Intel Core i5 10400F",
+        "category": "Processors",
+        "price": "$128.00 USD",
+        "image": "https://m.media-amazon.com/images/I/61n16H2OgjL._AC_SY355_.jpg",
+        "stock": 7,
+        "description": {
+            "p1": "El Intel Core i5-10400F es de los mejores procesadores de gama media-económica según las reseñas y opiniones recopiladas en la presente comparativa.",
+
+            "p2": "Tiene una arquitectura Comet Lake-S en proceso de 14 nm++. Cuenta con 6 núcleos y 12 hilos a 2,9 GHz-4,3 GHz, modo normal y turbo. Sus 12 MB de caché L3 no quedan nada mal. Su TDP es de 65 vatios incluye ventilador. Tiene un socket LGA1200 (chipset 400). No soporta el overclock, pero es bastante sólido para el uso de aplicaciones profesionales. Acepta un gran número de tarjetas gráficas de gama alta, lo cual es una ventaja considerable."
+        }
+
+    },
+    {
+        "id": "ICI3-10300F",
+        "name": "Intel Core i3 10300F",
+        "category": "Processors",
+        "price": "$68.00 USD",
+        "image": "https://m.media-amazon.com/images/I/51S2a+GyxUS._AC_SY355_.jpg",
+        "stock": 7,
+        "description": {
+            "p1": "Muchas opiniones señalan que este tipo de procesador es, definitivamente, el más razonable para tu bolsillo. Tiene una arquitectura Comet Lake-S en proceso de 14 nm++. Además, cuenta con 4 núcleos y 8 hilos a 3,6 GHz-4,3 GHz, modo normal y turbo. Posee 6 MB de caché L3 y un TDP de 65 vatios, con ventilador incluido. Su socket es de 1200 (chipset 400).",
+
+            "p2": "No soporta el overclock, pero responde bastante bien al uso de aplicaciones que no requieren tantos hilos. Su sinergia con tarjetas gráficas de alta gama no es fluida, por lo que no se recomienda combinarlo con estas."
+        }
+
+    },
+    {
+        "id": "ICI7-12700K",
+        "name": "Intel Core i7 12700K",
+        "category": "Processors",
+        "price": "$369.99 USD",
+        "image": "https://m.media-amazon.com/images/I/514VNpfgxIL._AC_SY355_.jpg",
+        "stock": 7,
+        "description": {
+            "p1": "Como de costumbre, comenzamos con las especificaciones técnicas del procesador. El 12700K cuenta con un total de 12 núcleos y 16 hilos. El procesador cuenta con una frecuencia base de 3,60 GHz en los Performance Core que llega a los 5 GHz en su modo turbo en estos núcleos mientras que los Efficient-Core parten de los 2,70 Ghz para alcanzar los 3,60Ghz. Cuenta, además con 25 MB de memoria cache y admite hasta 128 Gb de RAM DDR5 contando con un ancho de banda de 76,8 Gbps. Por último, Intel nos señala un TDP de 125 W en base y 190W en turbo junto con una temperatura máxima (Tjunction) de 100°C. La principal novedad del procesador, además de la implementación de la nueva DDR5, es la inclusión de 16 carriles PCIe 5.0 y 4 carriles PCIe 4 junto con la implementación de dos tipos distintos de cores para ganar rendimiento y eficiencia térmica.",
+
+            "p2": "En primer lugar, los P-Core, de los cuales encontramos 8 núcleos y que son, básicamente, los núcleos tradicionales de los procesadores. Estos núcleos ahora se dedican a las tareas de mayor potencia, como el gaming o la I.A.. Por otro lado encontramos un total de 4 E-Core, que consumen un 40% menos y no implementan HyerTreading. Estos núcleos cuentan con un diseño de procesamiento mucho más eficiente y se implementan para realizar las tareas más livianas o que demanden menos velocidad, como el sistema operativo, descargando de todas estas tareas a los P-Core y ganando así más fluidez y rendimiento. En lo referente a RAM, toca la llegada de la esperadísima DDR5 de la cual podremos instalar hasta 128 Gb, con un total de cuatro canales de 40 bits de ancho de bus (2 por DIMM). Estos sumarán 80 bits en total, frente al único canal de 64 bits disponible en las DDR4. Se implementa, como ya dijimos en la review de las Corsair Vengeance DDR5, la nueva tecnología XMP 3.0 que añadirá hasta 3 perfiles OC por el fabricante y otros dos más para ser personalizados por el usuario sin olvidar la función Dynamic Boost Memory que permite cargar varios perfiles simultáneos para que el propio sistema haga OC para adaptarse a sus necesidades."
         }
     }
 ]

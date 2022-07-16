@@ -1,3 +1,6 @@
+import { Link as RouterLink } from "react-router-dom";
+
+
 import { Button, Typography } from "@mui/material"
 import ProductLayout from "../layout/ProductLayout";
 
@@ -31,11 +34,11 @@ export const ProductHero = () => {
         TECNOLOGIA RTX PARA TU PC
       </Typography>
       <Button
+        component={ RouterLink } 
+        to={'/home/Graphics_Card'}
         variant="contained"
         color="button"
         size="large"
-        component="a"
-        href="#graphics"
         sx={{ minWidth: 200 }}
       >
         VER CATALOGO

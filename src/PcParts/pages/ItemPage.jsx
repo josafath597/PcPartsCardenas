@@ -69,23 +69,23 @@ export const ItemPage = () => {
         isLoading ?
 
         <SpinnerLayout>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', height: '70vh' }}>
                 <CircularProgress />
             </Box>
         </SpinnerLayout>    
             
         :
              
-            <Box component="section" sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'text' }} >
-                <Container sx={{ mt: 7, mb: 10, display: 'flex', position: 'relative' }}>
+            <Box component="section" sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'text', height: 'auto'}} >
+                <Container sx={{ mt: 7, mb: 8, display: 'flex', position: 'relative'}} maxWidth='xl'>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
                             <Box                
                                 component="img"
                                 src={image}
                                 alt="graphic"
-                                sx={{ height: '100%'
-                                , width: '100%' }}
+                                width="auto"
+                                maxHeight="300px"
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
@@ -119,11 +119,11 @@ export const ItemPage = () => {
                             </Box>
                         </Grid>
                         <Grid item>
-                            <Typography sx={{ fontSize: '20px' }}>
+                            <Typography sx={{ fontSize: 'auto' }}>
                                 {p1}
                             </Typography>
                             <br/>
-                            <Typography sx={{ fontSize: '20px' }}>
+                            <Typography sx={{ fontSize: 'auto' }}>
                                 {p2}
                             </Typography>
                         </Grid>-

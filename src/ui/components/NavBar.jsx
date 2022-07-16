@@ -1,24 +1,36 @@
 import { useState } from 'react';
-import { Link as RouterLink } from "react-router-dom"
+import { Link as RouterLink } from "react-router-dom";
 
-import { AppBar, Avatar, Badge, Box, Grid, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Avatar, Badge, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
 import InstallDesktopIcon from '@mui/icons-material/InstallDesktop';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
+const pages = [
+  {
+    name: 'Tarjetas de Video',
+    category: 'Graphics_Card',
+  },
+  {
+    name: 'Procesadores',
+    category: 'Processors',
+  }
+];
+const settings = ['Iniciar Sesión'];
+
 export const NavBar = () => {
-
-  // const settings = ["Profile","Logout"];
-  const settings = [
-    {
-      name: 'Iniciar Sesión',
-      link: '/auth/login'
-    }
-  ];
-
+  const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -26,73 +38,177 @@ export const NavBar = () => {
   };
 
   return (
-    <Box>
-      <AppBar color="primary" position="fixed">
-        <Toolbar>
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+        <IconButton edge="start" component={ RouterLink } to='/home' color="text" sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >
+            <InstallDesktopIcon fontSize='large' />
+          </IconButton>
+          
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            PcParts
+          </Typography>
 
-          <Grid container sx={{display: 'flex', justifyContent: 'space-between'}}>
+            {/* Responsive Styles */}
 
-            <Grid item sx={{ display: { xs: 'none',sm: 'flex', md: 'flex' }, alignItems: 'center' }} >
-              <IconButton edge="start" component={ RouterLink } to='/home' color="text" >
-                <InstallDesktopIcon fontSize='large'/>
-              </IconButton>
-              <Typography variant="h6" component="div" color="text" sx={{ml: 4 , fontWeight: 700 }} >
-                PcParts
-              </Typography>
-            </Grid>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {pages.map((page) => (
+                <div key={page.name}>
+                  hola
+                </div>
+                // <MenuItem key={page} onClick={handleCloseNavMenu}>
+                //   <Typography textAlign="center">{page}</Typography>
+                // </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+
+          {/* --------------------Responsive Styles --------------------*/}
+
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            PcParts
+          </Typography>
+          
+          {/*  ---------------------Finish Responsive Styles--------------------------- */}
 
 
-            <Grid item sx={{ width: { xs: '100%',sm: '50%'}, display: 'flex', justifyContent: { xs: 'space-between',sm: 'flex-end'}, }}>
-    
-                  <Tooltip title="Shopping Cart">
-                    <IconButton sx={{ mr:{xs:1, sm:3, md:3, lg:3} }} component={ RouterLink } to='/home/shop'>
-                      <Badge badgeContent={3} color="error">
-                        <ShoppingCartIcon fontSize='large' color="text"/>
-                      </Badge>
-                    </IconButton>
-                  </Tooltip>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Button
+              size="large"
+              aria-label="ProductsMenu"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              Productos
+            </Button>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block' },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page.category} onClick={handleCloseNavMenu} component={ RouterLink } to={`/home/${page.category}`}>
+                  <Typography textAlign="center">{page.name}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
 
-                
+          
+          
 
-                  <Tooltip title="User">
-                    <IconButton onClick={handleOpenUserMenu}>
-                      <Avatar alt="user" src="" />
-                    </IconButton>
-                  </Tooltip>
-
-            </Grid>
-              
-          </Grid>
-              
-              
-          <Box>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right"
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right"
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem key={setting.name} onClick={handleCloseUserMenu} component={ RouterLink } to='/auth/login'>
-                    <Typography textAlign="center">{setting.name}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>         
+          <Box sx={{ flexGrow: 0 }}>
+            <Box sx={{ display: 'flex'}}>
+              <Tooltip title="ShoppingCartIcon">
+                <IconButton sx={{ p: 0, color: 'text.main' }} component={ RouterLink } to='/home/shop'>
+                  <Badge badgeContent={4} color="error" sx={{ mr: 2}}>
+                    <ShoppingCartIcon sx={{ display: { xs: 'flex' } }} fontSize='large' />
+                  </Badge>
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="user" src="" />
+                </IconButton>
+              </Tooltip>
+            </Box>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu} component={ RouterLink } to='/auth/login'>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
         </Toolbar>
-
-
-      </AppBar>
-    </Box>
-  )
-}
+      </Container>
+    </AppBar>
+  );
+};

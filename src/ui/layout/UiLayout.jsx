@@ -18,12 +18,12 @@ export const UiLayout = ({children}) => {
                flexGrow: 0, p: 0  
             }}
         >
-            <Toolbar />
             {children}
 
         </Box>
-
-        <AppFooter />
+        <Box sx={{ position: 'bottom' }}>
+          <AppFooter/>
+        </Box>
     </Box>
   )
 }
