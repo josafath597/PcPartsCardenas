@@ -2,23 +2,23 @@
 
 ## Descripcion
 
-### Es un proyecto de Website Ecommerce utilizando React JS 
+#### Es un proyecto de Website Ecommerce utilizando React JS 
 
 ## Estatus de Proyecto 
 
-### En desarrollo
+#### En desarrollo
 
 ## Guia de instalacion
 
-### Descargar este repositorio y abrir un ventana de comandos y ejecutar npm installa una vez hecho la instalacion ejecutar npm Start (yo utilizo yarn siento que es mas rapido)
+#### Descargar este repositorio y abrir un ventana de comandos y ejecutar npm installa una vez hecho la instalacion ejecutar npm Start (yo utilizo yarn siento que es mas rapido)
 
 ## Tecnologias Utlizadas
 
 ### En este Proyecto se utilizaron las siguientes Tecnologias:
 
-[React](https://es.reactjs.org/).
-[React Router](https://reactrouter.com/).
-[Material UI](https://mui.com/).
+- [React](https://es.reactjs.org/).
+- [React Router](https://reactrouter.com/).
+- [Material UI](https://mui.com/).
     
 ## Cambios
 ### cambios del 16 de julio del 2022: 
@@ -40,7 +40,7 @@ Se agrega en la carpeta ./src/selectors un archivo
 
 Se vuelve a hacer el componente en la carpeta ./src/ui/components/NavBar
 
-### cambios del 16 de julio del 2022: 
+### cambios del 24 de julio del 2022: 
 
 > Se Agrega un Context 
 
