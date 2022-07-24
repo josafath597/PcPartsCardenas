@@ -16,11 +16,10 @@
 
 ### En este Proyecto se utilizaron las siguientes Tecnologias:
 
-    [React](https://es.reactjs.org/).
-    [React Router](https://reactrouter.com/).
-    [Material UI](https://mui.com/).
+[React](https://es.reactjs.org/).
+[React Router](https://reactrouter.com/).
+[Material UI](https://mui.com/).
     
-
 ## Cambios
 ### cambios del 16 de julio del 2022: 
 
