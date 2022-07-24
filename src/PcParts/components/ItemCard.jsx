@@ -6,7 +6,7 @@ export const ItemCard = (props) => {
   const {id, name, price, image, category} = props;
 
   return (
-    <Grid item xs={12} md={3}>
+    <Grid item xs={12} md={4} lg={3}>
       <Card sx={{ mb:3 , maxHeight:'430px', display: 'flex' , flexDirection:'column' , minHeight:'100%' }}>
         <CardMedia
           component="img"

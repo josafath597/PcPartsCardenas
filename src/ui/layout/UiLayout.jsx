@@ -21,9 +21,9 @@ export const UiLayout = ({children}) => {
             {children}
 
         </Box>
-        <Box sx={{ position: 'bottom' }}>
+
           <AppFooter/>
-        </Box>
+        
     </Box>
   )
 }

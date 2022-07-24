@@ -5,6 +5,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Avatar, Badge, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
 import InstallDesktopIcon from '@mui/icons-material/InstallDesktop';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { CartContext } from '../../Context/CartContext';
+import { useContext } from 'react';
 
 const pages = [
   {
@@ -19,6 +21,10 @@ const pages = [
 const settings = ['Iniciar Sesión'];
 
 export const NavBar = () => {
+
+  const {Counter} = useContext(CartContext);
+  
+
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -48,8 +54,8 @@ export const NavBar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="/"
+            component="p"
+            textDecoration="none"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -95,12 +101,9 @@ export const NavBar = () => {
               }}
             >
               {pages.map((page) => (
-                <div key={page.name}>
-                  hola
-                </div>
-                // <MenuItem key={page} onClick={handleCloseNavMenu}>
-                //   <Typography textAlign="center">{page}</Typography>
-                // </MenuItem>
+                <MenuItem key={page.category} onClick={handleCloseNavMenu} component={ RouterLink } to={`/home/${page.category}`}>
+                  <Typography textAlign="center">{page.name}</Typography>
+                </MenuItem>
               ))}
             </Menu>
           </Box>
@@ -110,8 +113,7 @@ export const NavBar = () => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
+            cursor='none'
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -173,7 +175,7 @@ export const NavBar = () => {
             <Box sx={{ display: 'flex'}}>
               <Tooltip title="ShoppingCartIcon">
                 <IconButton sx={{ p: 0, color: 'text.main' }} component={ RouterLink } to='/home/shop'>
-                  <Badge badgeContent={4} color="error" sx={{ mr: 2}}>
+                  <Badge badgeContent={Counter} color="error" sx={{ mr: 2}}>
                     <ShoppingCartIcon sx={{ display: { xs: 'flex' } }} fontSize='large' />
                   </Badge>
                 </IconButton>

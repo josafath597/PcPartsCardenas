@@ -25,6 +25,7 @@ export const LoginPage = () => {
                 placeholder="Email" 
                 fullWidth
                 name='email'
+                
 
             />
 

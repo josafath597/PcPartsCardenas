@@ -32,7 +32,7 @@ export const AppFooter = () => {
       component="footer"
       sx={{ display: 'flex', bgcolor: 'primary.main', color: 'text.main', height: '24vh' }}
     >
-      <Container sx={{ my: 8, display: 'flex' }}>
+      <Container sx={{ my: 8, display: 'flex', mb:3 }}>
         <Grid container spacing={5}>
           <Grid item xs={6} sm={4} md={3}>
             <Grid
@@ -90,7 +90,7 @@ export const AppFooter = () => {
             </Box>
           </Grid>
           
-          <Grid item xs= {12}>
+          {/* <Grid item xs= {12} bgcolor="primary">
             <Typography variant="caption">
               {'Icons made by '}
               <Link href="https://www.freepik.com" rel="sponsored" title="Freepik" sx={{ color: 'text.main'}}>
@@ -111,7 +111,7 @@ export const AppFooter = () => {
                 CC 3.0 BY
               </Link>
             </Typography>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Container>
     </Typography>

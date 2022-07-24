@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { CartProvider } from './Context/CartProvider';
 import './index.css';
 import { PcPartsApp } from './PcPartsApp';
-import { StoreProvider } from './Store/StoreProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <StoreProvider>
+    <CartProvider>
       <BrowserRouter>
         <PcPartsApp />
       </BrowserRouter>
-    </StoreProvider>
+    </CartProvider>
   </React.StrictMode>
 );
 

@@ -1,9 +1,11 @@
 import { Alert, Box, Button, ButtonGroup, CircularProgress, Container, Grid, Typography } from "@mui/material"
-import { useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom"
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { GetGraphicsById } from "../../selectors/GetGraphicsById";
 import { SpinnerLayout } from "../layout/SpinnerLayout";
+import { useContext } from "react";
+import { CartContext } from "../../Context/CartContext";
+import { useCounter } from "../../hooks/useCounter";
+import { OpenDialog } from "../components/OpenDialog";
 
 const initialState = {
     "name": "",
@@ -19,6 +21,7 @@ const initialState = {
 
 export const ItemPage = () => {
 
+    const {Counter, setCounter} = useContext(CartContext);
 
     const {id} = useParams();
 
@@ -41,24 +44,8 @@ export const ItemPage = () => {
         
     const {name, price, image, stock, description:{p1, p2} } = initialState;
 
-    const [quantity, setQuantity] = useState(1);
-    const [alert, setAlert] = useState(false);
+    const {alert, counter, increment, decrement} = useCounter(stock , Counter, setCounter);
 
-    const handleAddStock = (data = 0) => {
-        const newQuantity = quantity + data;
-        if (newQuantity > stock) {
-            setAlert(true);
-            return;
-        }
-        else if (newQuantity < 1) {
-            return;
-        }
-        else {
-            setQuantity(newQuantity);
-            setAlert(false);
-            return;
-        }
-    }
 
     if (!initialState) {
         return <Navigate to="/" />;
@@ -85,7 +72,7 @@ export const ItemPage = () => {
                                 src={image}
                                 alt="graphic"
                                 width="auto"
-                                maxHeight="300px"
+                                height="400px"
                             />
                         </Grid>
                         <Grid item xs={12} md={6}>
@@ -102,11 +89,11 @@ export const ItemPage = () => {
 
                                     <Grid item sx={{mt:1}}>
                                         <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{mr: 1, mb:1}}>
-                                            <Button onClick={() => handleAddStock(-1)}>-</Button>
-                                            <Button>  {quantity}  </Button>
-                                            <Button onClick={() => handleAddStock(1)}>+</Button>
+                                            <Button onClick={decrement}>-</Button>
+                                            <Button>  {counter}  </Button>
+                                            <Button onClick={increment}>+</Button>
                                         </ButtonGroup>  
-                                        <Button variant="contained" sx={{bgcolor:'secondary.main'}}>Añadir al Carrito <ShoppingCartIcon sx={{ml: 1}}/> </Button>
+                                        <OpenDialog />
                                     </Grid>
                                     <Grid item sx={{mt:1}}>
                                         <Button variant="contained" sx={{bgcolor:'error.main'}} onClick={handleReturn}>Regresar</Button>
@@ -119,11 +106,11 @@ export const ItemPage = () => {
                             </Box>
                         </Grid>
                         <Grid item>
-                            <Typography sx={{ fontSize: 'auto' }}>
+                            <Typography sx={{ fontSize: '20px' }}>
                                 {p1}
                             </Typography>
                             <br/>
-                            <Typography sx={{ fontSize: 'auto' }}>
+                            <Typography sx={{ fontSize: '20px' }}>
                                 {p2}
                             </Typography>
                         </Grid>-

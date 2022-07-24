@@ -1,8 +1,28 @@
 ### PC Parts
 
-Empezare a poner los ultimos cambios de la Pagina web
+## Descripcion
 
-## cambios del 16 de julio del 2022: 
+# Es un proyecto de Website Ecommerce utilizando React JS 
+
+## Estatus de Proyecto 
+
+# En desarrollo
+
+## Guia de instalacion
+
+# Descargar este repositorio y abrir un ventana de comandos y ejecutar npm installa una vez hecho la instalacion ejecutar npm Start (yo utilizo yarn siento que es mas rapido)
+
+## Tecnologias Utlizadas
+
+# En este Proyecto se utilizaron las siguientes Tecnologias:
+
+    - [React](https://es.reactjs.org/).
+    - [React Router](https://reactrouter.com/).
+    - [Material UI](https://mui.com/).
+    
+
+## Cambios
+# cambios del 16 de julio del 2022: 
 
 > Se elimina el catalogo inicial de la aplicacion para poner en su lugar la pestaña de productos en el NavBar
 
@@ -20,3 +40,11 @@ Se agrega en la carpeta ./src/selectors un archivo
 > GetComponentsByCategory.js
 
 Se vuelve a hacer el componente en la carpeta ./src/ui/components/NavBar
+
+# cambios del 16 de julio del 2022: 
+
+> Se Agrega un Context 
+
+> Se sincroniza un contador del carrito con el de ItemPage
+
+> Se agrega un dialog al presionar "Agregar Carrito" en ItemPage
