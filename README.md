@@ -16,13 +16,13 @@
 
 ### En este Proyecto se utilizaron las siguientes Tecnologias:
 
-    - [React](https://es.reactjs.org/).
-    - [React Router](https://reactrouter.com/).
-    - [Material UI](https://mui.com/).
+    [React](https://es.reactjs.org/).
+    [React Router](https://reactrouter.com/).
+    [Material UI](https://mui.com/).
     
 
 ## Cambios
-# cambios del 16 de julio del 2022: 
+### cambios del 16 de julio del 2022: 
 
 > Se elimina el catalogo inicial de la aplicacion para poner en su lugar la pestaña de productos en el NavBar
 
@@ -41,7 +41,7 @@ Se agrega en la carpeta ./src/selectors un archivo
 
 Se vuelve a hacer el componente en la carpeta ./src/ui/components/NavBar
 
-# cambios del 16 de julio del 2022: 
+### cambios del 16 de julio del 2022: 
 
 > Se Agrega un Context 
 
