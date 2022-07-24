@@ -1,20 +1,20 @@
-### PC Parts
+# PC Parts
 
 ## Descripcion
 
-# Es un proyecto de Website Ecommerce utilizando React JS 
+### Es un proyecto de Website Ecommerce utilizando React JS 
 
 ## Estatus de Proyecto 
 
-# En desarrollo
+### En desarrollo
 
 ## Guia de instalacion
 
-# Descargar este repositorio y abrir un ventana de comandos y ejecutar npm installa una vez hecho la instalacion ejecutar npm Start (yo utilizo yarn siento que es mas rapido)
+### Descargar este repositorio y abrir un ventana de comandos y ejecutar npm installa una vez hecho la instalacion ejecutar npm Start (yo utilizo yarn siento que es mas rapido)
 
 ## Tecnologias Utlizadas
 
-# En este Proyecto se utilizaron las siguientes Tecnologias:
+### En este Proyecto se utilizaron las siguientes Tecnologias:
 
     - [React](https://es.reactjs.org/).
     - [React Router](https://reactrouter.com/).
