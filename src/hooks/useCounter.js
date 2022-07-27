@@ -1,9 +1,10 @@
 import { useState } from "react";
 
-export const useCounter = ( stock, counter, setCounter ) => {
+export const useCounter = ( stock ) => {
     
     const [alert, setAlert] = useState(false);
-
+    const [counter, setCounter] = useState(1);
+    
     const increment = () => {
         if (counter < stock) {
             setCounter(counter + 1);
@@ -24,6 +25,7 @@ export const useCounter = ( stock, counter, setCounter ) => {
     return {
         alert,
         counter,
+        setCounter,
         increment,
         decrement,
     }

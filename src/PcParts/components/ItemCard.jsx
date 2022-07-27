@@ -1,6 +1,6 @@
-
 import { Link as RouterLink } from "react-router-dom"
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+
 
 export const ItemCard = (props) => {
   const {id, name, price, image, category} = props;
@@ -27,8 +27,6 @@ export const ItemCard = (props) => {
           <Button variant="outlined" size="small" component={ RouterLink } to={`/home/${category}/${id}`}>
             Ver mas
           </Button>
-            {/* <ItemDetail id={id} open={open} handleClose={handleClose} handleClickOpen={handleClickOpen} {...props}/> */}
-
         </CardActions>
       </Card>
 

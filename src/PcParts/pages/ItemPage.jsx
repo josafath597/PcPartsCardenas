@@ -2,8 +2,6 @@ import { Alert, Box, Button, ButtonGroup, CircularProgress, Container, Grid, Typ
 import { Navigate, useNavigate, useParams } from "react-router-dom"
 import { GetGraphicsById } from "../../selectors/GetGraphicsById";
 import { SpinnerLayout } from "../layout/SpinnerLayout";
-import { useContext } from "react";
-import { CartContext } from "../../Context/CartContext";
 import { useCounter } from "../../hooks/useCounter";
 import { OpenDialog } from "../components/OpenDialog";
 
@@ -20,8 +18,6 @@ const initialState = {
 
 
 export const ItemPage = () => {
-
-    const {Counter, setCounter} = useContext(CartContext);
 
     const {id} = useParams();
 
@@ -44,7 +40,7 @@ export const ItemPage = () => {
         
     const {name, price, image, stock, description:{p1, p2} } = initialState;
 
-    const {alert, counter, increment, decrement} = useCounter(stock , Counter, setCounter);
+    const {alert, counter, setCounter, increment, decrement} = useCounter(stock);
 
 
     if (!initialState) {
@@ -93,7 +89,7 @@ export const ItemPage = () => {
                                             <Button>  {counter}  </Button>
                                             <Button onClick={increment}>+</Button>
                                         </ButtonGroup>  
-                                        <OpenDialog />
+                                        <OpenDialog {...data} quantity={counter} setCounter={setCounter}/>
                                     </Grid>
                                     <Grid item sx={{mt:1}}>
                                         <Button variant="contained" sx={{bgcolor:'error.main'}} onClick={handleReturn}>Regresar</Button>

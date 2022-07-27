@@ -47,3 +47,7 @@ Se vuelve a hacer el componente en la carpeta ./src/ui/components/NavBar
 > Se sincroniza un contador del carrito con el de ItemPage
 
 > Se agrega un dialog al presionar "Agregar Carrito" en ItemPage
+
+### cambios del 27 de julio del 2022: 
+
+> Se Actualiza la pagina de shop

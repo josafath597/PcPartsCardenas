@@ -22,7 +22,10 @@ const settings = ['Iniciar Sesión'];
 
 export const NavBar = () => {
 
-  const {Counter} = useContext(CartContext);
+  const {ItemCartLength} = useContext(CartContext);
+  
+  const Counter = ItemCartLength();
+
   
 
   const [anchorElNav, setAnchorElNav] = useState(null);

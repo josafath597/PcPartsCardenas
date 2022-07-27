@@ -43,7 +43,7 @@ export const CategoryPage =  () => {
                 </Typography>
             </Grid>
             {
-                data.map((item, index) => (
+                data.map((item) => (
                     <ItemCard key={item.id} {...item} />
                     ))
             }

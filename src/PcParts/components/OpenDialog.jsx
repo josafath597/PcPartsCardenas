@@ -1,45 +1,22 @@
-import { useState } from 'react';
-import { Link as RouterLink } from "react-router-dom";
-import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
-
+import { useContext, useState } from 'react';
+import { Button} from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import PropTypes from 'prop-types';
 
-const SimpleDialog = (props) => {
-
-  const { onClose, selectedValue, open } = props;
-
-  const handleClose = () => {
-    onClose(selectedValue);
-  };
+import { SimpleDialog } from './SimpleDialog';
+import { CartContext } from '../../Context/CartContext';
 
 
-  return (
-    <Dialog onClose={handleClose} open={open}>
-        <DialogTitle>Se agrego el producto a tu carrito de compras</DialogTitle>
-        <DialogActions>
-          <Button variant="outlined" sx={{ mr: 1 }} onClick={handleClose}>Seguir Comprando</Button>
-          <Button variant="outlined" component={ RouterLink } to={`/home/shop`} autoFocus>
-            Ir al carrito
-          </Button>
-        </DialogActions>
-    </Dialog>
-  );
+export const OpenDialog = (props) => {
 
-}
+  const {setCounter} = props;
 
-SimpleDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
-};
-
-
-export const OpenDialog = () => {
+  const {AddItemCart} = useContext(CartContext);
 
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
+    setCounter(1);
+    AddItemCart(props);
     setOpen(true);
   };
 
@@ -57,3 +34,4 @@ export const OpenDialog = () => {
     </>
   );
 }
+
