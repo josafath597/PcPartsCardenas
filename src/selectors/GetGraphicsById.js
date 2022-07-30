@@ -1,17 +1,44 @@
-import { useFetch } from "../hooks/useFetch";
-import { URL } from "../PcParts/Url";
+import { useEffect, useState } from "react";
+import { db } from "../firebase/config";
+import { doc, getDoc } from "firebase/firestore";
 
+export const GetGraphicsById = ( id = '' , category = '' ) => {
+    // const {data , isLoading} = useFetch();
 
-export const GetGraphicsById = ( id = '' ) => {
-    const {data , isLoading} = useFetch(URL);
-    if(isLoading) {
-        return {
-            isLoading
-        }
+    const [state, setState] = useState({
+        data: {},
+        isLoading: true,
+    })
+
+    const getComponentByID = async () => {
+        setState({
+            ...state,
+            isLoading: true
+        })
+
+        const docRef = doc(db, `${ category }`, `${ id }`);
+        const docSnapshot = await getDoc(docRef);
+
+        if (docSnapshot.exists()) {
+            setState({
+                data: docSnapshot.data(),
+                isLoading: false,
+            });
+          } else {
+            setState({
+                isLoading: false,
+            });
+
+          }
     }
-    const graphics = data.filter(item => item.id === id);
+
+    useEffect(() => {
+        getComponentByID();
+    }, []);
+
     return {
-        isLoading,
-        data: graphics[0]
+        data: state.data,
+        isLoading: state.isLoading,
+        error: state.error
     };
 }

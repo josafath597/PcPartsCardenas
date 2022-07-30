@@ -51,3 +51,9 @@ Se vuelve a hacer el componente en la carpeta ./src/ui/components/NavBar
 ### cambios del 27 de julio del 2022: 
 
 > Se Actualiza la pagina de shop
+
+### cambios del 30 de julio del 2022: 
+
+> Se añade firebase al proyecto
+
+> Se elimina el hook useFetch y se modifican los archivos GetComponentsByCategory y GetComponentsById para obtener los datos desde firestore

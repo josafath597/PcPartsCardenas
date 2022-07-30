@@ -19,7 +19,8 @@ const initialState = {
 
 export const ItemPage = () => {
 
-    const {id} = useParams();
+    const {id, category} = useParams();
+
 
     const navigate = useNavigate();
     
@@ -27,7 +28,7 @@ export const ItemPage = () => {
         navigate(-1);
     }
 
-    const {isLoading , data} = GetGraphicsById(id);
+    const {isLoading , data} = GetGraphicsById(id, category);
 
     if(!isLoading) {
         initialState.name = data.name;
@@ -36,6 +37,7 @@ export const ItemPage = () => {
         initialState.stock = data.stock;
         initialState.description.p1 = data.description.p1;
         initialState.description.p2 = data.description.p2;
+
     }
         
     const {name, price, image, stock, description:{p1, p2} } = initialState;

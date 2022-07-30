@@ -1,21 +1,50 @@
-import { useFetch } from "../hooks/useFetch";
-import { URL } from "../PcParts/Url";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { db } from "../firebase/config";
 
 
 export const GetComponentsByCategory = ( category ) => {
-
-    const {data , isLoading} = useFetch(URL);
-
-    if(isLoading) {
-        return {
-            isLoading
-        }
-    }
 
     const validComponent = ['Graphics_Card', 'Processors'];
     
     if( !validComponent.includes( category )){
         throw new Error(`${ category } is not a valid Component`);
+    }
+
+    const [state, setState] = useState(
+        {
+            data: [],
+            isLoading: true,
+            error: null
+        }
+    )
+
+    const getFetch = async () => {
+
+        setState({
+            ...state,
+            isLoading: true
+        })
+
+        const querySnapshot = await getDocs(collection(db, `${category}`));
+        setState({
+            data: querySnapshot.docs.map(doc => doc.data()),
+            isLoading: false,
+            error: null
+        })
+
+    }
+
+    useEffect(() => {
+        getFetch();
+    }, [category]);
+ 
+    const { data, isLoading } = state;
+
+    if(isLoading) {
+        return {
+            isLoading
+        }
     }
 
     const items = data.filter(item => item.category === category);
