@@ -25,11 +25,11 @@ export const GetGraphicsById = ( id = '' , category = '' ) => {
                 isLoading: false,
             });
           } else {
-            setState({
-                isLoading: false,
+              setState({
+                  isLoading: false,
             });
-
-          }
+            
+        }
     }
 
     useEffect(() => {

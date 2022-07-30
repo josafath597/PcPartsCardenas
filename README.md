@@ -19,6 +19,7 @@
 - [React](https://es.reactjs.org/).
 - [React Router](https://reactrouter.com/).
 - [Material UI](https://mui.com/).
+- [Firebase](https://firebase.google.com/).
     
 ## Cambios
 ### cambios del 16 de julio del 2022: 
