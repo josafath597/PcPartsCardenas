@@ -34,7 +34,7 @@ export const GetGraphicsById = ( id = '' , category = '' ) => {
 
     useEffect(() => {
         getComponentByID();
-    }, []);
+    }, [id]);
 
     return {
         data: state.data,
