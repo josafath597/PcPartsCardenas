@@ -1,6 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db } from "../firebase/config";
+import { FirebaseDB } from "../firebase/config";
 
 
 export const GetComponentsByCategory = ( category ) => {
@@ -26,7 +26,7 @@ export const GetComponentsByCategory = ( category ) => {
             isLoading: true
         })
 
-        const querySnapshot = await getDocs(collection(db, `${category}`));
+        const querySnapshot = await getDocs(collection(FirebaseDB, `${category}`));
         setState({
             data: querySnapshot.docs.map(doc => doc.data()),
             isLoading: false,

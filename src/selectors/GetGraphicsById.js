@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { db } from "../firebase/config";
 import { doc, getDoc } from "firebase/firestore";
+import { FirebaseDB } from "../firebase/config";
 
 export const GetGraphicsById = ( id = '' , category = '' ) => {
     // const {data , isLoading} = useFetch();
@@ -16,7 +16,7 @@ export const GetGraphicsById = ( id = '' , category = '' ) => {
             isLoading: true
         })
 
-        const docRef = doc(db, `${ category }`, `${ id }`);
+        const docRef = doc(FirebaseDB, `${ category }`, `${ id }`);
         const docSnapshot = await getDoc(docRef);
 
         if (docSnapshot.exists()) {

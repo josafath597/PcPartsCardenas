@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './Context/AuthProvider';
 import { CartProvider } from './Context/CartProvider';
 import './index.css';
 import { PcPartsApp } from './PcPartsApp';
@@ -8,11 +9,13 @@ import { PcPartsApp } from './PcPartsApp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <CartProvider>
-      <BrowserRouter>
-        <PcPartsApp />
-      </BrowserRouter>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <PcPartsApp />
+        </BrowserRouter>
+      </CartProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
 

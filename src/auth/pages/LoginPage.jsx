@@ -1,14 +1,29 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link as RouterLink } from "react-router-dom"
 import { Google } from '@mui/icons-material'
 import { Button, Grid, Link, TextField, Typography } from '@mui/material'
+import { useNavigate } from "react-router-dom"
 import { AuthLayout } from '../layout/AuthLayout'
+import { singInWithGoogle } from '../../firebase/providers'
+import { AuthContext } from '../../Context/AuthContext'
 
 export const LoginPage = () => {
 
+  const {setUser} = useContext(AuthContext)
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('handleSubmit')
+  }
+
+  const navigate = useNavigate();
+  
+  const startGoogleSignIn = async () => {
+    const result = await singInWithGoogle();
+    setUser(result);
+    if(result.ok) {
+      navigate('/home');
+    }
+
   }
 
   return (
@@ -57,6 +72,7 @@ export const LoginPage = () => {
                 <Button  
                   variant='contained' 
                   fullWidth
+                  onClick={startGoogleSignIn}
                 >
                   <Google />
                   <Typography sx={{ ml:1 }} >

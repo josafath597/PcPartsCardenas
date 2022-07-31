@@ -7,6 +7,7 @@ import InstallDesktopIcon from '@mui/icons-material/InstallDesktop';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { CartContext } from '../../Context/CartContext';
 import { useContext } from 'react';
+import { AuthContext } from '../../Context/AuthContext';
 
 const pages = [
   {
@@ -18,7 +19,7 @@ const pages = [
     category: 'Processors',
   }
 ];
-const settings = ['Iniciar Sesión'];
+const settings = ['Iniciar Sesión', 'Cerrar Sesión'];
 
 export const NavBar = () => {
 
@@ -26,6 +27,9 @@ export const NavBar = () => {
   
   const Counter = ItemCartLength();
 
+  const {user:{displayName, photoURL}} = useContext(AuthContext);
+
+  
   
 
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -175,7 +179,11 @@ export const NavBar = () => {
           
 
           <Box sx={{ flexGrow: 0 }}>
-            <Box sx={{ display: 'flex'}}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+              {
+                  displayName && <Typography sx={{fontSize: '20px', mr: 3 }} >{`Hola ${displayName}`}</Typography>
+              }
+              
               <Tooltip title="ShoppingCartIcon">
                 <IconButton sx={{ p: 0, color: 'text.main' }} component={ RouterLink } to='/home/shop'>
                   <Badge badgeContent={Counter} color="error" sx={{ mr: 2}}>
@@ -185,7 +193,7 @@ export const NavBar = () => {
               </Tooltip>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="user" src="" />
+                  <Avatar alt="user" src={photoURL} />
                 </IconButton>
               </Tooltip>
             </Box>
@@ -205,11 +213,16 @@ export const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu} component={ RouterLink } to='/auth/login'>
-                  <Typography textAlign="center">{setting}</Typography>
+              {
+                displayName === undefined ? 
+                <MenuItem key={settings[0]} onClick={handleCloseUserMenu} component={ RouterLink } to='/auth/login'>
+                  <Typography textAlign="center">{settings[0]}</Typography>
                 </MenuItem>
-              ))}
+                :
+                <MenuItem key={settings[1]} onClick={handleCloseUserMenu} component={ RouterLink } to='/auth/login'>
+                  <Typography textAlign="center">{settings[1]}</Typography>
+                </MenuItem>
+              }
             </Menu>
           </Box>
         </Toolbar>
