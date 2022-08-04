@@ -1,16 +1,53 @@
 import { useContext } from "react";
-import { CartContext } from "../../Context/CartContext";
+
 import { Box, Button, Container, Typography } from "@mui/material";
 import { CartItem } from "../components/CartItem";
 
 import ProductValue from '../../assets/carro.png';
+import { CartContext } from "../../Context/CartContext";
+import { ShopDialog } from "../components/ShopDialog";
+import { AuthContext } from "../../Context/AuthContext";
+import { collection, doc, setDoc, updateDoc } from "firebase/firestore";
+import { FirebaseDB } from "../../firebase/config";
 
 
 export const ShopPage = () => {
 
   const {ItemCart, RemoveAllItemCart, TotalCart} = useContext(CartContext);
   const total = TotalCart();
-  console.log(ItemCart);
+
+  const {user} = useContext(AuthContext);
+
+  const StartUploadProducts = async () => {
+
+    const products = ItemCart.map(item => ({
+      name: item.name,
+      id: item.id,
+      price: item.price,
+    })
+    );
+
+    const newDoc = doc(collection(FirebaseDB, `orders`));
+    const setDocResp = await setDoc(newDoc, {
+      buyer: {
+        name: user.displayName,
+        email: user.email,
+        uid: user.uid,
+      },
+      items: products,
+      date: new Date(),
+      total: total
+    });
+
+    const setUpdateDoc =  ItemCart.map(async (item) => {
+      const UpdateRef = doc(FirebaseDB, `${item.category}/${item.id}` )
+      await updateDoc(UpdateRef, {
+        stock: item.stock - item.quantity
+      })
+    });
+    console.log(newDoc);
+    return newDoc.id;   
+  }
 
   return (
      ItemCart.length > 0 ?
@@ -29,7 +66,8 @@ export const ShopPage = () => {
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '100%'}}>
             <Button variant="contained" sx={{bgcolor:'secondary.main', m:2 }} onClick={RemoveAllItemCart}>Borrar Todo</Button>
-            <Button variant="contained" sx={{bgcolor:'secondary.main', m:2 }}>Continuar con tu Compra</Button>
+            <ShopDialog StartUploadProducts={StartUploadProducts} />
+            
           </Box>
         </Box>
 

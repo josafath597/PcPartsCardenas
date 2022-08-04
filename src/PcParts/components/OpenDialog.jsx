@@ -8,6 +8,8 @@ import { CartContext } from '../../Context/CartContext';
 
 export const OpenDialog = (props) => {
 
+  const {stock}= props;
+
   const {setCounter} = props;
 
   const {AddItemCart} = useContext(CartContext);
@@ -26,7 +28,7 @@ export const OpenDialog = (props) => {
 
   return (
     <>
-        <Button variant="contained" onClick={handleClickOpen} sx={{bgcolor:'secondary.main'}}>Añadir al Carrito <ShoppingCartIcon sx={{ml: 1}}/> </Button>
+        <Button variant="contained" disabled={stock === 0 ? true : false} onClick={handleClickOpen} sx={{bgcolor:'secondary.main'}}>Añadir al Carrito <ShoppingCartIcon sx={{ml: 1}}/> </Button>
         <SimpleDialog
             open={open}
             onClose={handleClose}

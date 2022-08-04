@@ -58,3 +58,9 @@ Se vuelve a hacer el componente en la carpeta ./src/ui/components/NavBar
 > Se añade firebase al proyecto
 
 > Se elimina el hook useFetch y se modifican los archivos GetComponentsByCategory y GetComponentsById para obtener los datos desde firestore
+
+### Cambios del 3 de agosto del 2022
+
+> Su sube a firebase mi coleccion llamado orders/'id dinamico' y ademas se actualiza mi datos
+
+>Se implementa hace la implementacion con la autenciacion de tanto por email y password como por google

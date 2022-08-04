@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link as RouterLink } from "react-router-dom";
 
-import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Avatar, Badge, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import InstallDesktopIcon from '@mui/icons-material/InstallDesktop';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 import { CartContext } from '../../Context/CartContext';
-import { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
+import { logoutFirebase } from '../../firebase/providers';
 
 const pages = [
   {
@@ -27,9 +28,9 @@ export const NavBar = () => {
   
   const Counter = ItemCartLength();
 
-  const {user:{displayName, photoURL}} = useContext(AuthContext);
-
-  
+  const {user, setUser} = useContext(AuthContext);
+  const displayName = user !== {} ? user.displayName : 'Iniciar Sesión';
+  const photoURL = user !== {} ? user.photoURL : '';
   
 
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -49,6 +50,14 @@ export const NavBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const Logout = () => {
+    setAnchorElUser(null);
+    logoutFirebase();
+    setUser({});
+  };
+
+
 
   return (
     <AppBar position="static">
@@ -181,7 +190,7 @@ export const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
               {
-                  displayName && <Typography sx={{fontSize: '20px', mr: 3 }} >{`Hola ${displayName}`}</Typography>
+                  displayName && <Typography sx={{fontSize: '20px', mr: 3 }} >{`${displayName}`}</Typography>
               }
               
               <Tooltip title="ShoppingCartIcon">
@@ -193,7 +202,7 @@ export const NavBar = () => {
               </Tooltip>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="user" src={photoURL} />
+                  <Avatar alt="user" src={`${photoURL}`} />
                 </IconButton>
               </Tooltip>
             </Box>
@@ -214,12 +223,12 @@ export const NavBar = () => {
               onClose={handleCloseUserMenu}
             >
               {
-                displayName === undefined ? 
+                user.displayName === undefined ? 
                 <MenuItem key={settings[0]} onClick={handleCloseUserMenu} component={ RouterLink } to='/auth/login'>
                   <Typography textAlign="center">{settings[0]}</Typography>
                 </MenuItem>
                 :
-                <MenuItem key={settings[1]} onClick={handleCloseUserMenu} component={ RouterLink } to='/auth/login'>
+                <MenuItem key={settings[1]} onClick={Logout} component={ RouterLink } to='/auth/login'>
                   <Typography textAlign="center">{settings[1]}</Typography>
                 </MenuItem>
               }

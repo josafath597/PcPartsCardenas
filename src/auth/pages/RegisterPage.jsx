@@ -1,21 +1,64 @@
-import { Link as RouterLink } from "react-router-dom"
-import { Button, Grid, Link, TextField, Typography } from '@mui/material'
+import { useContext, useState } from "react"
+import { Link as RouterLink, useNavigate } from "react-router-dom"
+import { useForm } from "react-hook-form"
+
+import { registerUserWithEmailPassword } from "../../firebase/providers"
+
+import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
+
 import { AuthLayout } from '../layout/AuthLayout'
+import { AuthContext } from "../../Context/AuthContext"
 
 export const RegisterPage = () => {
+
+  const {setUser} = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const [error, setError] = useState()
+
+  const onSubmit = async (data) => {
+    const { email, password, name:displayName } = data;
+    const resp = await registerUserWithEmailPassword(email, password, displayName);
+    if(resp.ok) {
+      setUser(resp);
+      navigate('/home');
+    }
+    else {
+      setError(resp.errorMessage);
+      console.log(resp);
+    }
+  }
+
+
   return (
     <AuthLayout title='Crear una cuenta'>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container>
 
         <Grid item xs={12} sx={{mt:2}}>
 
-          <TextField 
+          <TextField
+            error= {errors.name?.message === undefined ? false : true}
+            helperText={errors.name?.message}
             label="Nombre" 
             type="text" 
             placeholder="Nombre" 
             fullWidth
-            name='name'
+            {...register("name",
+              {
+                required:{
+                  value: true,
+                  message: "Por favor ingrese su nombre"
+                },
+                maxLength: {
+                  value: 40,
+                  message: "El nombre es demasiado largo"
+                }
+              }
+            )}
               />
 
         </Grid>
@@ -23,11 +66,24 @@ export const RegisterPage = () => {
         <Grid item xs={12} sx={{mt:2}}>
 
           <TextField 
+            error= {errors.email?.message === undefined ? false : true}
+            helperText={errors.email?.message}
             label="Email" 
-            type="email" 
+            type="text" 
             placeholder="Email" 
             fullWidth
-            name='email'
+            {
+              ...register("email", {
+              required: {
+                value: true,
+                message: "Por favor ingrese su email",
+              },
+              pattern: {
+                value:
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: "Por favor ingrese un email valido",
+              },
+            })}
               />
 
         </Grid>
@@ -35,26 +91,28 @@ export const RegisterPage = () => {
         <Grid item xs={12} sx={{mt:2}}>
 
           <TextField 
+            error= {errors.password?.message === undefined ? false : true}
+            helperText={errors.password?.message} 
             label="Password" 
             type="password" 
             placeholder="Password" 
             fullWidth
-            name='password'
+            {
+              ...register("password", 
+              {
+                required: {
+                  value: true,
+                  message: "Por favor ingrese su password",
+                },
+                minLength: {
+                  value: 6,
+                  message: "La contraseña es al menos de 6 caracteres",
+                }
+            })}
               />
 
         </Grid>
 
-        <Grid item xs={12} sx={{mt:2}}>
-
-          <TextField 
-            label="Confirmar Password" 
-            type="password" 
-            placeholder="Confirmar Password" 
-            fullWidth
-            name='confirmPassword'
-              />
-
-        </Grid>
       </Grid>
       <Grid container spacing={2} sx={{ mb:2, mt:1 }}>
 
@@ -67,6 +125,14 @@ export const RegisterPage = () => {
             Crear cuenta
           </Button>
         </Grid>
+        
+        {
+          error && <Grid item xs={12}>
+          <Alert severity="error">
+            {error}
+          </Alert>
+        </Grid>
+        }
 
       </Grid>
 
