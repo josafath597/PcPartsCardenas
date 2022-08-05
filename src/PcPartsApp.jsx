@@ -13,7 +13,7 @@ export const PcPartsApp = () => {
 
   useEffect(() => {
     
-    onAuthStateChanged( FirebaseAuth , async ( user ) =>{
+    onAuthStateChanged( FirebaseAuth , ( user ) =>{
       if(user){
         setUser(user)
         setAuth(true)

@@ -5,7 +5,6 @@ import { useContext, useState } from "react";
 import { CartContext } from "../../Context/CartContext";
 import { AuthContext } from "../../Context/AuthContext";
 
-
     const SimpleDialog = ({ onClose, open, order }) => {
 
     const {RemoveAllItemCart} = useContext(CartContext);

@@ -29,8 +29,9 @@ export const NavBar = () => {
   const Counter = ItemCartLength();
 
   const {user, setUser} = useContext(AuthContext);
-  const displayName = user !== {} ? user.displayName : 'Iniciar Sesión';
-  const photoURL = user !== {} ? user.photoURL : '';
+
+  const displayName = user?.displayName;
+  const photoURL = user?.photoURL
   
 
   const [anchorElNav, setAnchorElNav] = useState(null);

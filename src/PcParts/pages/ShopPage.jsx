@@ -27,8 +27,7 @@ export const ShopPage = () => {
     })
     );
 
-    const newDoc = doc(collection(FirebaseDB, `orders`));
-    const setDocResp = await setDoc(newDoc, {
+    const order = {
       buyer: {
         name: user.displayName,
         email: user.email,
@@ -37,15 +36,18 @@ export const ShopPage = () => {
       items: products,
       date: new Date(),
       total: total
-    });
+    }
 
-    const setUpdateDoc =  ItemCart.map(async (item) => {
+    const newDoc = doc(collection(FirebaseDB, `orders`));
+    await setDoc(newDoc, order );
+
+    ItemCart.map(async (item) => {
       const UpdateRef = doc(FirebaseDB, `${item.category}/${item.id}` )
       await updateDoc(UpdateRef, {
         stock: item.stock - item.quantity
       })
     });
-    console.log(newDoc);
+    
     return newDoc.id;   
   }
 

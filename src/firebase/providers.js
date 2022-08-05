@@ -1,6 +1,10 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
+import { collection, doc, setDoc, updateDoc } from 'firebase/firestore';
+import { useContext } from 'react';
+import { AuthContext } from '../Context/AuthContext';
+import { CartContext } from '../Context/CartContext';
 
-import { FirebaseAuth } from './config';
+import { FirebaseAuth, FirebaseDB } from './config';
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -91,3 +95,5 @@ export const startLoginWithEmailPassword = async (email, password) => {
 export const logoutFirebase = async () => {
     return await FirebaseAuth.signOut();
 }
+
+
