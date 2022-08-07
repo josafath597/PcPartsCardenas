@@ -1,14 +1,13 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from "react-router-dom";
 
 import { AppBar, Avatar, Badge, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import InstallDesktopIcon from '@mui/icons-material/InstallDesktop';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { startLogout } from '../../store/auth/thunks';
 
-import { CartContext } from '../../Context/CartContext';
-import { AuthContext } from '../../Context/AuthContext';
-import { logoutFirebase } from '../../firebase/providers';
 
 const pages = [
   {
@@ -24,14 +23,9 @@ const settings = ['Iniciar Sesión', 'Cerrar Sesión'];
 
 export const NavBar = () => {
 
-  const {ItemCartLength} = useContext(CartContext);
-  
-  const Counter = ItemCartLength();
+  const dispatch = useDispatch();
 
-  const {user, setUser} = useContext(AuthContext);
-
-  const displayName = user?.displayName;
-  const photoURL = user?.photoURL
+  const {status, displayName, photoURL} = useSelector(state => state.auth);
   
 
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -52,11 +46,12 @@ export const NavBar = () => {
     setAnchorElUser(null);
   };
 
-  const Logout = () => {
+  
+
+  const onLogout = () => {
     setAnchorElUser(null);
-    logoutFirebase();
-    setUser({});
-  };
+    dispatch(startLogout());
+  }
 
 
 
@@ -190,20 +185,24 @@ export const NavBar = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
-              {
-                  displayName && <Typography sx={{fontSize: '20px', mr: 3 }} >{`${displayName}`}</Typography>
-              }
+              
+              <Typography
+                display={ !!displayName ? 'block' : 'none' }
+                sx={{fontSize: '20px', mr: 3 }}>
+                  {displayName}
+              </Typography>
+              
               
               <Tooltip title="ShoppingCartIcon">
                 <IconButton sx={{ p: 0, color: 'text.main' }} component={ RouterLink } to='/home/shop'>
-                  <Badge badgeContent={Counter} color="error" sx={{ mr: 2}}>
+                  <Badge badgeContent={1} color="error" sx={{ mr: 2}}>
                     <ShoppingCartIcon sx={{ display: { xs: 'flex' } }} fontSize='large' />
                   </Badge>
                 </IconButton>
               </Tooltip>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="user" src={`${photoURL}`} />
+                  <Avatar alt="user" src= { !!photoURL ? `${photoURL}` : ''} />
                 </IconButton>
               </Tooltip>
             </Box>
@@ -224,12 +223,12 @@ export const NavBar = () => {
               onClose={handleCloseUserMenu}
             >
               {
-                user.displayName === undefined ? 
+                status === 'not-authenticated' ?
                 <MenuItem key={settings[0]} onClick={handleCloseUserMenu} component={ RouterLink } to='/auth/login'>
                   <Typography textAlign="center">{settings[0]}</Typography>
-                </MenuItem>
+                </MenuItem> 
                 :
-                <MenuItem key={settings[1]} onClick={Logout} component={ RouterLink } to='/auth/login'>
+                <MenuItem key={settings[1]} onClick={onLogout} component={ RouterLink } to='/auth/login'>
                   <Typography textAlign="center">{settings[1]}</Typography>
                 </MenuItem>
               }

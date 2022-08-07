@@ -17,7 +17,7 @@ export const SimpleDialog = ({ onClose, open }) => {
   
   
     return (
-      <Dialog onClose={handleClose} open={open}>
+      <Dialog onClose={handleClose} open={open} className="animate__animated animate__fadeIn animate__faster">
           <DialogTitle>Se agrego el producto a tu carrito de compras</DialogTitle>
           <DialogActions>
             <Button variant="outlined" sx={{ mr: 1 }} onClick={handleClose} autoFocus>Seguir Comprando</Button>

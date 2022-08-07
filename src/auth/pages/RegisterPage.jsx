@@ -1,53 +1,45 @@
-import { useContext, useState } from "react"
+import { useMemo } from "react"
+import { useDispatch, useSelector } from 'react-redux'
 import { Link as RouterLink, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
-
-import { registerUserWithEmailPassword } from "../../firebase/providers"
-
 import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
 
 import { AuthLayout } from '../layout/AuthLayout'
-import { AuthContext } from "../../Context/AuthContext"
+import { startCreateUserWithEmailPassword } from "../../store/auth"
+
 
 export const RegisterPage = () => {
 
-  const {setUser} = useContext(AuthContext);
+  const dispatch = useDispatch();
+
+  const {status, errorMessage} = useSelector(state => state.auth);
+
+  const isCheckingAuthentication = useMemo ( () => status === 'checking', [status]);
 
   const navigate = useNavigate();
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const [error, setError] = useState()
-
   const onSubmit = async (data) => {
-    const { email, password, name:displayName } = data;
-    const resp = await registerUserWithEmailPassword(email, password, displayName);
-    if(resp.ok) {
-      setUser(resp);
-      navigate('/home');
-    }
-    else {
-      setError(resp.errorMessage);
-      console.log(resp);
-    }
+    dispatch(startCreateUserWithEmailPassword(data));
   }
 
 
   return (
     <AuthLayout title='Crear una cuenta'>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="animate__animated animate__fadeIn animate__faster">
         <Grid container>
 
         <Grid item xs={12} sx={{mt:2}}>
 
           <TextField
-            error= {errors.name?.message === undefined ? false : true}
-            helperText={errors.name?.message}
+            error= {errors.displayName?.message === undefined ? false : true}
+            helperText={errors.displayName?.message}
             label="Nombre" 
             type="text" 
             placeholder="Nombre" 
             fullWidth
-            {...register("name",
+            {...register("displayName",
               {
                 required:{
                   value: true,
@@ -91,6 +83,60 @@ export const RegisterPage = () => {
         <Grid item xs={12} sx={{mt:2}}>
 
           <TextField 
+            error= {errors.phoneNumber?.message === undefined ? false : true}
+            helperText={errors.phoneNumber?.message} 
+            label="Telefono" 
+            type="text" 
+            placeholder="Telefono" 
+            fullWidth
+            {
+              ...register('phoneNumber', {
+              required: {
+                value: true,
+                message:
+                  'Por favor ingrese su numero',
+              },
+              pattern: { /*Asegurarnos que es un numero el que se ingresa*/
+                value: /^[0-9]+$/,
+                message: 'Eso no es un numero',
+              },
+              minLength: { /*Asegurar el tamaño del numero*/
+                value: 10,
+                message: 'EL numero es demasiado corto',
+              }
+              
+            })}
+              />
+
+        </Grid>
+
+        <Grid item xs={12} sx={{mt:2}}>
+
+          <TextField
+            error= {errors.photoURL?.message === undefined ? false : true} 
+            helperText={errors.photoURL?.message} 
+            label="URL de la foto de perfil" 
+            type="text" 
+            placeholder="Ejemplo: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" 
+            fullWidth
+            {
+              ...register('photoURL', {
+              required: {
+                value: false,
+              },
+              minLength: {
+                value: 5,
+                message: 'La url es demasiado corta',
+              }
+              
+            })}
+              />
+
+        </Grid>
+
+        <Grid item xs={12} sx={{mt:2}}>
+
+          <TextField 
             error= {errors.password?.message === undefined ? false : true}
             helperText={errors.password?.message} 
             label="Password" 
@@ -112,12 +158,25 @@ export const RegisterPage = () => {
               />
 
         </Grid>
+        
+        
 
       </Grid>
       <Grid container spacing={2} sx={{ mb:2, mt:1 }}>
 
+      
+        <Grid item xs={12}
+          display= { !!errorMessage ? 'block' : 'none' }
+        >
+          <Alert severity="error">
+            {errorMessage}
+          </Alert>
+        </Grid>
+        
+
         <Grid item xs={12}>
-          <Button 
+          <Button
+            disabled={isCheckingAuthentication} 
             variant='contained' 
             fullWidth 
             type="submit" 
@@ -126,13 +185,7 @@ export const RegisterPage = () => {
           </Button>
         </Grid>
         
-        {
-          error && <Grid item xs={12}>
-          <Alert severity="error">
-            {error}
-          </Alert>
-        </Grid>
-        }
+        
 
       </Grid>
 

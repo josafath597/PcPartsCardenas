@@ -1,61 +1,45 @@
-import React, { useContext, useState } from 'react'
-import { Link as RouterLink } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
+import React, { useMemo, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link as RouterLink, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
-
-import { singInWithGoogle, startLoginWithEmailPassword } from '../../firebase/providers'
-
 import { Google } from '@mui/icons-material'
 import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
 
 import { AuthLayout } from '../layout/AuthLayout'
-import { AuthContext } from '../../Context/AuthContext'
+import { startGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth'
+
 
 
 export const LoginPage = () => {
 
-  const {setUser , isAuthenticated, setIsAuthenticated, setAuth} = useContext(AuthContext);
+  const {status, errorMessage} = useSelector(state => state.auth);
 
-  const [error, setError] = useState()
-
-
+  const isCheckingAuthentication = useMemo ( () => status === 'checking', [status]);
+  
   const navigate = useNavigate();
-  
-  const startGoogleSignIn = async () => {
-    setIsAuthenticated(true);
-    const resp = await singInWithGoogle();
-    setUser(resp);
-    if(resp.ok) {
-      setAuth(true);
-      navigate('/home');
-    }else{
-      setAuth(false);
-    }
-    setIsAuthenticated(false);
 
-  }
   
+  const dispatch = useDispatch();
 
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = async ({email, password}) => {
-    setIsAuthenticated(true);
-    const resp = await startLoginWithEmailPassword(email, password);
-    if(resp.ok) {
-      setAuth(true);
-      setUser(resp);
-      navigate('/home');
-    }else {
-      setAuth(false);
-      setError(resp.errorMessage);
-      console.log(resp);
-    }
-    setIsAuthenticated(false);
+
+  const isAuthenticating = useMemo(() => status === 'checking', [status]);
+
+  const onSubmit = async (data) => {
+
+    dispatch(startLoginWithEmailPassword(data))
+    
   }
+
+  const onGoogleSignIn =  () => {
+    dispatch(startGoogleSignIn())
+  }
+
 
   return (
     <AuthLayout title="Iniciar Sesion">
 
-      <form action="" onSubmit={handleSubmit(onSubmit)}>
+      <form action="" onSubmit={handleSubmit(onSubmit)} className="animate__animated animate__fadeIn animate__faster">
         <Grid container>
 
           <Grid item xs={12} sx={{mt:2}}>
@@ -112,30 +96,27 @@ export const LoginPage = () => {
 
           <Grid container spacing={2} sx={{ mb:2, mt:1 }} >
 
-            {
-              error && 
-              <Grid item xs={12}>
-                <Alert severity="error">
-                  {error}
-                </Alert>
-              </Grid>
-            }
+            <Grid item xs={12}
+              display= { !!errorMessage ? 'block' : 'none' }
+            >
+              <Alert severity="error">
+                {errorMessage}
+              </Alert>
+            </Grid>
 
             <Grid item xs={12} sm={6}>
-
-
-              <Button type="submit" variant='contained' fullWidth disabled={isAuthenticated} >
+              <Button type="submit" variant='contained' fullWidth disabled={ isAuthenticating } >
                 Iniciar Sesión
               </Button>
-
             </Grid>
 
             <Grid item xs={12} sm={6}>
                 <Button
-                  disabled={isAuthenticated}  
+                  disabled={ isAuthenticating }  
                   variant='contained' 
                   fullWidth
-                  onClick={startGoogleSignIn}
+                  onClick={onGoogleSignIn}
+
                 >
                   <Google />
                   <Typography sx={{ ml:1 }} >
@@ -146,18 +127,14 @@ export const LoginPage = () => {
 
 
           </Grid>
-          {
-            !isAuthenticated
-             
-            && 
             
-            <Grid container direction='row' justifyContent='end' sx={{}}>
+            <Grid container direction='row' justifyContent='end' display={ isAuthenticating && 'none'}>
               <span>No tienes cuenta?</span>
-              <Link component={ RouterLink } color='inherit' to='/auth/register' sx={{ ml:1 }} disabled={isAuthenticated}>
+              <Link component={ RouterLink } color='inherit' to='/auth/register' sx={{ ml:1 }} disabled={false}>
                 Registrate
               </Link>
             </Grid>
-          }
+          
 
           
 

@@ -1,15 +1,31 @@
+
 import { Box } from "@mui/material"
+import { useCheckAuth } from "../../hooks/useCheckAuth";
 import { AppFooter } from "../components/AppFooter"
+import { CheckingAuth } from "../components/CheckingAuth";
 import { NavBar } from "../components/NavBar"
 
+
+
 export const UiLayout = ({children}) => {
+
+  const { status } = useCheckAuth(); 
+
+  if( status === 'checking') {
+    return <CheckingAuth />
+  }
+
+
   return (
-    <Box sx={{
+    <Box
+      className="animate__animated animate__fadeIn animate__faster"
+      sx={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
         height: '100vh',
-    }}>
+      }}
+    >
         <Box>
           <NavBar />
           <Box

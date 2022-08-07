@@ -1,25 +1,19 @@
-import { useContext } from "react"
+import { useSelector } from 'react-redux'
+
 import { Navigate, Route, Routes } from "react-router-dom"
 import { AuthRouter } from "../auth/routes/AuthRouter"
-import { AuthContext } from "../Context/AuthContext"
 import { PcPartsRouter } from "../PcParts/routes/PcPartsRouter"
 
 export const AppRouter = () => {
-  const { user } = useContext(AuthContext);
+
+  const {status} = useSelector(state => state.auth);
   return (
     <Routes>
-
       {
-        !user.displayName && <Route path="/auth/*" element={<AuthRouter />} />
+        status === 'not-authenticated' && <Route path="/auth/*" element={<AuthRouter />} />
       }
-      
       <Route path="/home/*" element={<PcPartsRouter />} />
-         
-        
-
-        <Route path="/*" element={ <Navigate to='/home' /> } />
-
-
+      <Route path="/*" element={ <Navigate to='/home' /> } />
     </Routes>
   )
 }

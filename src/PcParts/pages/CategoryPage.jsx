@@ -31,6 +31,7 @@ export const CategoryPage =  () => {
             :
 
         <Box
+        className="animate__animated animate__fadeIn animate__faster"
         component="section"
         sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'grey.main' }}
         id="graphics"

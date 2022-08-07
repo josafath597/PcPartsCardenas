@@ -1,14 +1,9 @@
+import { useState } from "react";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
 import { Box, Button, CircularProgress, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import PropTypes from 'prop-types';
-import { useContext, useState } from "react";
-import { CartContext } from "../../Context/CartContext";
-import { AuthContext } from "../../Context/AuthContext";
 
-    const SimpleDialog = ({ onClose, open, order }) => {
-
-    const {RemoveAllItemCart} = useContext(CartContext);
-    
+    const SimpleDialog = ({ onClose, open }) => {
 
     const navigate = useNavigate();
     
@@ -19,13 +14,12 @@ import { AuthContext } from "../../Context/AuthContext";
     const handleClose = () => {
       handleReturn();
       onClose();
-      RemoveAllItemCart();
     };
   
   
     return (
-      <Dialog onClose={handleClose} open={open}>
-        {
+      <Dialog onClose={handleClose} open={open} className="animate__animated animate__fadeIn animate__faster">
+        {/* {
             order === undefined ? 
             <Box sx={{ display: 'flex', width: '10vh', height: '10vh', justifyContent: 'center', alignItems: 'center'}}>
             <CircularProgress />
@@ -39,7 +33,15 @@ import { AuthContext } from "../../Context/AuthContext";
                     </Button>
                 </DialogActions>
             </>
-        }
+        } */}
+        <>
+                <DialogTitle textAlign='center'>{`Compra Exitosa tu numero de orden es ${1}, usa este numero de orden para rastrear tu pedido, tu pedido es enviado al siguiente dia habil despues de la compra`}</DialogTitle>
+                <DialogActions>
+                    <Button variant="outlined" onClick={handleClose} autoFocus>
+                        Volver a la tienda
+                    </Button>
+                </DialogActions>
+          </>
         
     </Dialog>
     );
@@ -54,19 +56,14 @@ import { AuthContext } from "../../Context/AuthContext";
 
 
 
-export const ShopDialog = ({StartUploadProducts}) => {
+export const ShopDialog = () => {
 
-    const {user} = useContext(AuthContext);
     
     const [open, setOpen] = useState(false);
 
-    const [order, setOrder] = useState();
-
+    
     const handleClickOpen = async () => {
         setOpen(true);
-        const id = await StartUploadProducts();
-        setOrder(id);
-        
       };
     
       const handleClose = () => {
@@ -75,17 +72,23 @@ export const ShopDialog = ({StartUploadProducts}) => {
 
 
   return (
-    user.displayName === undefined ? 
+    // user.displayName === undefined ? 
     
-    <Button variant="contained" sx={{bgcolor:'secondary.main', m:2 }} component={ RouterLink } to={`/auth/login`}>Registrate primero o Inicia sesion</Button>
+    // <Button variant="contained" sx={{bgcolor:'secondary.main', m:2 }} component={ RouterLink } to={`/auth/login`}>Registrate primero o Inicia sesion</Button>
 
-    :
+    // :
+    // <>
+    //     <Button variant="contained" onClick={handleClickOpen} sx={{bgcolor:'secondary.main', m:2 }}>Continuar con tu Compra</Button>
+    //     <SimpleDialog
+    //             open={open}
+    //             onClose={handleClose}
+    //     />
+    // </>
     <>
         <Button variant="contained" onClick={handleClickOpen} sx={{bgcolor:'secondary.main', m:2 }}>Continuar con tu Compra</Button>
         <SimpleDialog
                 open={open}
                 onClose={handleClose}
-                order={order}
         />
     </>
   )

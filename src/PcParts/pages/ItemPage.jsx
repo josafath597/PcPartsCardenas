@@ -61,7 +61,7 @@ export const ItemPage = () => {
             
         :
              
-            <Box component="section" sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'text', height: 'auto'}} >
+            <Box component="section" sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'text', height: 'auto'}} className="animate__animated animate__fadeIn animate__faster" >
                 <Container sx={{ mt: 7, mb: 8, display: 'flex', position: 'relative'}} maxWidth='xl'>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
