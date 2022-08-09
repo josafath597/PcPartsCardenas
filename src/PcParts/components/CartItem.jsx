@@ -1,17 +1,26 @@
 import { Avatar, Button, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material"
-import { useContext } from "react";
-import { CartContext } from "../../Context/CartContext";
+import { useDispatch } from 'react-redux';
+import { removeCartItem } from "../../store/Cart/CartSlice";
 
-export const CartItem = () => {
+
+export const CartItem = ({image, name, stock, cost, quantity, id}) => {
+
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch( removeCartItem(id) );
+  }
+
+  
 
   return (
     <List sx={{ width: '100%'}}>
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="component" src='' />
+          <Avatar alt="component" src={image} />
         </ListItemAvatar>
       <ListItemText
-        primary="GTX 1080"
+        primary={name}
         secondary={
           <>
             <Typography
@@ -20,14 +29,14 @@ export const CartItem = () => {
               variant="body2"
               color="text.primary"
             >
-              1000 USD — Tu producto se envia al siguiente dia habil despues de la compra
+              { cost } USD — Tu producto se envia al siguiente dia habil despues de la compra
               <br />
-              Pzas: 3 
+              Pzas: {stock}, En el carrito: {quantity}
             </Typography>  
           </>
         }
         />
-          <Button variant="contained" sx={{bgcolor:'secondary.main', m:1}}>Eliminar</Button>
+          <Button variant="contained" onClick={handleClick} sx={{bgcolor:'secondary.main', m:1}}>Eliminar</Button>
       </ListItem>
       <Divider variant="inset" component="li" bgcolor="text.main" />
     </List>

@@ -1,72 +1,45 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Box, Button, Container, Typography } from "@mui/material";
-import { CartItem } from "../components/CartItem";
 
+import { CartItem } from "../components/CartItem";
 import ProductValue from '../../assets/carro.png';
-import { ShopDialog } from "../components/ShopDialog";
+import { countCartItems, removeAllCartItems, totalCartItems } from '../../store/Cart/CartSlice';
+import { AddressItem } from '../components/AddressItem';
 
 
 export const ShopPage = () => {
+  const dispatch = useDispatch();
+  const {items, total, count} = useSelector( state => state.cart );
 
-  const ItemCart = [1,2];
-
-
-  // const StartUploadProducts = async () => {
-
-  //   const products = ItemCart.map(item => ({
-  //     name: item.name,
-  //     id: item.id,
-  //     price: item.price,
-  //   })
-  //   );
-
-  //   const order = {
-  //     buyer: {
-  //       name: user.displayName,
-  //       email: user.email,
-  //       uid: user.uid,
-  //     },
-  //     items: products,
-  //     date: new Date(),
-  //     total: total
-  //   }
-
-  //   const newDoc = doc(collection(FirebaseDB, `orders`));
-  //   await setDoc(newDoc, order );
-
-  //   ItemCart.map(async (item) => {
-  //     const UpdateRef = doc(FirebaseDB, `${item.category}/${item.id}` )
-  //     await updateDoc(UpdateRef, {
-  //       stock: item.stock - item.quantity
-  //     })
-  //   });
-    
-  //   return newDoc.id;   
-  // }
-
-  const state = true;
-
+  useEffect(() => {
+    dispatch( totalCartItems() );
+    dispatch( countCartItems() );
+  }, [items])
+  
   return (
-     state ?
+   
+     count > 0 ?
 
       <Container className="animate__animated animate__fadeIn animate__faster">
-        <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
           <Typography sx={{ color: 'primary.main', mt:3 }} variant="h2" >Carrito de Compras</Typography>
-          <Typography variant="h4" sx={{ color: 'primary.main', mt:3}}>{`Tienes ${0} producto(s) en tu carrito`} </Typography>
+          <Typography variant="h4" sx={{ color: 'primary.main', mt:3}}>{`Tienes ${count} producto(s) en tu carrito`} </Typography>
           {
-            ItemCart.map(( item ) => (
-              <CartItem key={item} />
+            items.map(( item ) => (
+              <CartItem key={item.id} {...item} />
             ))
           }
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '95%'}}>
-          <Typography variant="h5"> Su Total a Pagar es : 1000 USD </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-start', width: '95%'}}>
+          <Typography variant="h5"> {`Su Total a Pagar es : ${total}  USD`} </Typography>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '100%'}}>
-            <Button variant="contained" sx={{bgcolor:'secondary.main', m:2 }}>Borrar Todo</Button>
-            <ShopDialog/>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-start', width: '100%'}}>
+            <Button variant="contained" onClick={() => dispatch(removeAllCartItems())} sx={{bgcolor:'secondary.main', m:2 }}>Borrar Todo</Button>
             
           </Box>
-        </Box>
+          </Box>
+          <AddressItem />
 
       </Container>
     

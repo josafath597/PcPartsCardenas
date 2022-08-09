@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link as RouterLink, useNavigate } from "react-router-dom"
+import { Link as RouterLink } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { Google } from '@mui/icons-material'
 import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
@@ -13,11 +13,6 @@ import { startGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth
 export const LoginPage = () => {
 
   const {status, errorMessage} = useSelector(state => state.auth);
-
-  const isCheckingAuthentication = useMemo ( () => status === 'checking', [status]);
-  
-  const navigate = useNavigate();
-
   
   const dispatch = useDispatch();
 

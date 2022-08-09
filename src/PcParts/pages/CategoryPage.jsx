@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Box, CircularProgress, Container, Grid, Typography } from "@mui/material";
 import { SpinnerLayout } from "../layout/SpinnerLayout";
 import { GetComponentsByCategory } from "../../selectors/GetComponentsByCategory";
@@ -8,17 +8,8 @@ export const CategoryPage =  () => {
 
     const {category} = useParams();
 
-    const navigate = useNavigate();
-    
-    const handleReturn = () => {
-        navigate(-1);
-    }
-
     const {isLoading , data} = GetComponentsByCategory(category);
-
-
-
-    
+ 
     return (
         isLoading ?
             

@@ -32,8 +32,10 @@ export const AppFooter = () => {
       component="footer"
       sx={{ display: 'flex', bgcolor: 'primary.main', color: 'text.main', height: '24vh' }}
     >
+
       <Container sx={{ my: 8, display: 'flex', mb:3 }}>
         <Grid container spacing={5}>
+
           <Grid item xs={6} sm={4} md={3}>
             <Grid
               container
@@ -76,6 +78,7 @@ export const AppFooter = () => {
               </Grid>
             </Grid>
           </Grid>
+
           <Grid item xs={6} sm={4} md={2}>
             <Typography variant="h6" marked="left" gutterBottom>
               Legal
@@ -90,30 +93,9 @@ export const AppFooter = () => {
             </Box>
           </Grid>
           
-          {/* <Grid item xs= {12} bgcolor="primary">
-            <Typography variant="caption">
-              {'Icons made by '}
-              <Link href="https://www.freepik.com" rel="sponsored" title="Freepik" sx={{ color: 'text.main'}}>
-                Freepik
-              </Link>
-              {' from '}
-              <Link href="https://www.flaticon.com" rel="sponsored" title="Flaticon" sx={{ color: 'text.main'}}>
-                www.flaticon.com
-              </Link>
-              {' is licensed by '}
-              <Link
-                href="https://creativecommons.org/licenses/by/3.0/"
-                title="Creative Commons BY 3.0"
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ color: 'text.main'}}
-              >
-                CC 3.0 BY
-              </Link>
-            </Typography>
-          </Grid> */}
         </Grid>
       </Container>
+
     </Typography>
   )
 }

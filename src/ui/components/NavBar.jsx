@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from "react-router-dom";
 
@@ -6,7 +6,9 @@ import { AppBar, Avatar, Badge, Box, Button, Container, IconButton, Menu, MenuIt
 import MenuIcon from '@mui/icons-material/Menu';
 import InstallDesktopIcon from '@mui/icons-material/InstallDesktop';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 import { startLogout } from '../../store/auth/thunks';
+import { countCartItems } from '../../store/Cart/CartSlice';
 
 
 const pages = [
@@ -26,8 +28,13 @@ export const NavBar = () => {
   const dispatch = useDispatch();
 
   const {status, displayName, photoURL} = useSelector(state => state.auth);
-  
+  const {items} = useSelector(state => state.cart);
+  const {count} = useSelector( state => state.cart );
 
+  useEffect(() => {
+    dispatch(countCartItems());
+  }, [items])
+  
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -45,8 +52,6 @@ export const NavBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  
 
   const onLogout = () => {
     setAnchorElUser(null);
@@ -195,7 +200,7 @@ export const NavBar = () => {
               
               <Tooltip title="ShoppingCartIcon">
                 <IconButton sx={{ p: 0, color: 'text.main' }} component={ RouterLink } to='/home/shop'>
-                  <Badge badgeContent={1} color="error" sx={{ mr: 2}}>
+                  <Badge badgeContent={count} color="error" sx={{ mr: 2}}>
                     <ShoppingCartIcon sx={{ display: { xs: 'flex' } }} fontSize='large' />
                   </Badge>
                 </IconButton>

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
 import { FirebaseDB } from "../firebase/config";
+import { doc, getDoc } from "firebase/firestore";
 
 export const GetGraphicsById = ( id = '' , category = '' ) => {
-    // const {data , isLoading} = useFetch();
 
     const [state, setState] = useState({
         data: {},

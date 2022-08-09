@@ -1,5 +1,5 @@
-import { Alert, Box, Button, ButtonGroup, CircularProgress, Container, Grid, Typography } from "@mui/material"
 import { Navigate, useNavigate, useParams } from "react-router-dom"
+import { Alert, Box, Button, ButtonGroup, CircularProgress, Container, Grid, Typography } from "@mui/material"
 import { GetGraphicsById } from "../../selectors/GetGraphicsById";
 import { SpinnerLayout } from "../layout/SpinnerLayout";
 import { useCounter } from "../../hooks/useCounter";
@@ -20,7 +20,6 @@ const initialState = {
 export const ItemPage = () => {
 
     const {id, category} = useParams();
-
 
     const navigate = useNavigate();
     
@@ -91,7 +90,7 @@ export const ItemPage = () => {
                                             <Button>  {counter}  </Button>
                                             <Button onClick={increment}>+</Button>
                                         </ButtonGroup>  
-                                        <OpenDialog {...data} quantity={counter} setCounter={setCounter}/>
+                                        <OpenDialog {...data} quantity={counter} setCounter={setCounter} category={category}/>
                                     </Grid>
                                     <Grid item sx={{mt:1}}>
                                         <Button variant="contained" sx={{bgcolor:'error.main'}} onClick={handleReturn}>Regresar</Button>

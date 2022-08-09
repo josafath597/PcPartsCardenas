@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { Link as RouterLink, useNavigate } from "react-router-dom"
+import { Link as RouterLink } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
 
@@ -15,8 +15,6 @@ export const RegisterPage = () => {
   const {status, errorMessage} = useSelector(state => state.auth);
 
   const isCheckingAuthentication = useMemo ( () => status === 'checking', [status]);
-
-  const navigate = useNavigate();
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 

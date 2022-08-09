@@ -1,6 +1,6 @@
-import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { FirebaseDB } from "../firebase/config";
+import { collection, getDocs } from "firebase/firestore";
 
 
 export const GetComponentsByCategory = ( category ) => {
@@ -47,10 +47,8 @@ export const GetComponentsByCategory = ( category ) => {
         }
     }
 
-    const items = data.filter(item => item.category === category);
-
     return {
         isLoading,
-        data: items
+        data
     }
 }
