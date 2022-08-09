@@ -20,6 +20,7 @@
 - [React Router](https://reactrouter.com/).
 - [Material UI](https://mui.com/).
 - [Firebase](https://firebase.google.com/).
+- [Redux](https://redux-toolkit.js.org/).
     
 ## Cambios
 ### cambios del 16 de julio del 2022: 
