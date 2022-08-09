@@ -64,3 +64,7 @@ Se vuelve a hacer el componente en la carpeta ./src/ui/components/NavBar
 > Su sube a firebase mi coleccion llamado orders/'id dinamico' y ademas se actualiza mi datos
 
 >Se implementa hace la implementacion con la autenciacion de tanto por email y password como por google
+
+### Cambios del 9 de Agosto del 2022
+
+> Se elimina el Context y se use Redux en su lugar
