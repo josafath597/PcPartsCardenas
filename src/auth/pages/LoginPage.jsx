@@ -1,9 +1,6 @@
-import React, { useContext, useState } from 'react'
-import { Link as RouterLink } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
+import React, { useContext, useEffect } from 'react'
+import { Link as RouterLink, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
-
-import { singInWithGoogle, startLoginWithEmailPassword } from '../../firebase/providers'
 
 import { Google } from '@mui/icons-material'
 import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
@@ -14,42 +11,22 @@ import { AuthContext } from '../../Context/AuthContext'
 
 export const LoginPage = () => {
 
-  const {setUser , isAuthenticated, setIsAuthenticated, setAuth} = useContext(AuthContext);
-
-  const [error, setError] = useState()
-
+  const {error , isAuthenticated, Auth, startGoogleSignIn, LoginWithEmailPassword} = useContext(AuthContext);
 
   const navigate = useNavigate();
   
-  const startGoogleSignIn = async () => {
-    setIsAuthenticated(true);
-    const resp = await singInWithGoogle();
-    setUser(resp);
-    if(resp.ok) {
-      setAuth(true);
-      navigate('/home');
-    }else{
-      setAuth(false);
-    }
-    setIsAuthenticated(false);
+  useEffect(() => {
 
-  }
+    if(Auth){
+      navigate('/home');
+    }
+
+  }, [Auth])
   
-
   const { register, handleSubmit, formState: { errors } } = useForm();
+
   const onSubmit = async ({email, password}) => {
-    setIsAuthenticated(true);
-    const resp = await startLoginWithEmailPassword(email, password);
-    if(resp.ok) {
-      setAuth(true);
-      setUser(resp);
-      navigate('/home');
-    }else {
-      setAuth(false);
-      setError(resp.errorMessage);
-      console.log(resp);
-    }
-    setIsAuthenticated(false);
+    await LoginWithEmailPassword(email, password);
   }
 
   return (

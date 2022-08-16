@@ -1,7 +1,6 @@
-import { Grid } from '@mui/material'
-import React from 'react'
+import { Box, CircularProgress, Grid } from '@mui/material'
 
-export const SpinnerLayout = ( {children} ) => {
+export const SpinnerLayout = () => {
   return (
     <Grid 
       container 
@@ -16,7 +15,9 @@ export const SpinnerLayout = ( {children} ) => {
         padding: 4,
       }}
       >
-            { children }
+            <Box sx={{ display: 'flex', height: '64vh' }}>
+            <CircularProgress />
+            </Box>
 
     </Grid>
   )

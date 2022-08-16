@@ -1,11 +1,14 @@
 import { useContext } from "react"
 import { Navigate, Route, Routes } from "react-router-dom"
+
 import { AuthRouter } from "../auth/routes/AuthRouter"
 import { AuthContext } from "../Context/AuthContext"
 import { PcPartsRouter } from "../PcParts/routes/PcPartsRouter"
 
 export const AppRouter = () => {
+
   const { user } = useContext(AuthContext);
+  
   return (
     <Routes>
 

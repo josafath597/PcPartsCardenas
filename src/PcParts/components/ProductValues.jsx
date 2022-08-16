@@ -12,6 +12,7 @@ const item = {
 };
 
 export const ProductValues = () => {
+  
   return (
     <Box
       component="section"

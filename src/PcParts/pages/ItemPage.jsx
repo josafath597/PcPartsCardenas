@@ -1,7 +1,9 @@
-import { Alert, Box, Button, ButtonGroup, CircularProgress, Container, Grid, Typography } from "@mui/material"
 import { Navigate, useNavigate, useParams } from "react-router-dom"
-import { GetGraphicsById } from "../../selectors/GetGraphicsById";
+
+import { Alert, Box, Button, ButtonGroup, Container, Grid, Typography } from "@mui/material"
+
 import { SpinnerLayout } from "../layout/SpinnerLayout";
+import { GetGraphicsById } from "../../selectors/GetGraphicsById";
 import { useCounter } from "../../hooks/useCounter";
 import { OpenDialog } from "../components/OpenDialog";
 
@@ -53,11 +55,7 @@ export const ItemPage = () => {
 
         isLoading ?
 
-        <SpinnerLayout>
-            <Box sx={{ display: 'flex', height: '70vh' }}>
-                <CircularProgress />
-            </Box>
-        </SpinnerLayout>    
+        <SpinnerLayout/> 
             
         :
              

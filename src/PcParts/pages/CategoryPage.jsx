@@ -1,5 +1,7 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { Box, CircularProgress, Container, Grid, Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
+
+import { Box, Container, Grid, Typography } from "@mui/material";
+
 import { SpinnerLayout } from "../layout/SpinnerLayout";
 import { GetComponentsByCategory } from "../../selectors/GetComponentsByCategory";
 import { ItemCard } from "../components/ItemCard";
@@ -8,26 +10,14 @@ export const CategoryPage =  () => {
 
     const {category} = useParams();
 
-    const navigate = useNavigate();
-    
-    const handleReturn = () => {
-        navigate(-1);
-    }
-
     const {isLoading , data} = GetComponentsByCategory(category);
 
 
-
-    
     return (
         isLoading ?
             
-        <SpinnerLayout>
-        <Box sx={{ display: 'flex', height: '64vh' }}>
-            <CircularProgress />
-        </Box>
-        </SpinnerLayout>
-            
+        <SpinnerLayout/>
+
             :
 
         <Box

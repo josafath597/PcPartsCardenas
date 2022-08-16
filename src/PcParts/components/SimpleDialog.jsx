@@ -1,6 +1,7 @@
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import PropTypes from 'prop-types';
+
+import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 
 export const SimpleDialog = ({ onClose, open }) => {
 

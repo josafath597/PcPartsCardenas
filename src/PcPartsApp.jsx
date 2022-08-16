@@ -1,25 +1,18 @@
-import { onAuthStateChanged } from 'firebase/auth'
-import { useContext, useEffect } from 'react'
-import { AuthContext } from './Context/AuthContext'
-import { FirebaseAuth } from './firebase/config'
-import { AppRouter } from './router/AppRouter'
+import { useContext } from 'react'
+
 import { AppTheme } from './theme'
+
+import { AuthContext } from './Context/AuthContext'
+import { AppRouter } from './router/AppRouter'
 import { UiLayout } from './ui/layout/UiLayout'
+import { useCheckingAuth } from './hooks/useCheckingAuth'
 
 
 export const PcPartsApp = () => {
 
   const { setUser, setAuth } = useContext(AuthContext)
 
-  useEffect(() => {
-    
-    onAuthStateChanged( FirebaseAuth , async ( user ) =>{
-      if(user){
-        setUser(user)
-        setAuth(true)
-      }
-    });
-  }, [])
+  useCheckingAuth(setAuth, setUser);
   
 
 

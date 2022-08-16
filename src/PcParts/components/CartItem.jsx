@@ -1,5 +1,7 @@
+import { useContext } from "react"
+;
 import { Avatar, Button, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material"
-import { useContext } from "react";
+
 import { CartContext } from "../../Context/CartContext";
 
 export const CartItem = (props) => {

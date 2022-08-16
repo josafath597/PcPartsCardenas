@@ -23,7 +23,6 @@ export const singInWithGoogle = async () => {
 
         
     } catch (error) {
-        console.log(error);
         const errorMessage = error.message;
 
         return {
@@ -52,7 +51,6 @@ export const registerUserWithEmailPassword = async (email, password, displayName
 
         
     } catch (error) {
-        console.log(error);
         const errorMessage = error.message;
 
 
@@ -77,7 +75,6 @@ export const startLoginWithEmailPassword = async (email, password) => {
         }
         
     } catch (error) {
-        console.log(error);
         const errorMessage = error.message;
 
         return {

@@ -89,29 +89,6 @@ export const AppFooter = () => {
               </Box>
             </Box>
           </Grid>
-          
-          {/* <Grid item xs= {12} bgcolor="primary">
-            <Typography variant="caption">
-              {'Icons made by '}
-              <Link href="https://www.freepik.com" rel="sponsored" title="Freepik" sx={{ color: 'text.main'}}>
-                Freepik
-              </Link>
-              {' from '}
-              <Link href="https://www.flaticon.com" rel="sponsored" title="Flaticon" sx={{ color: 'text.main'}}>
-                www.flaticon.com
-              </Link>
-              {' is licensed by '}
-              <Link
-                href="https://creativecommons.org/licenses/by/3.0/"
-                title="Creative Commons BY 3.0"
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ color: 'text.main'}}
-              >
-                CC 3.0 BY
-              </Link>
-            </Typography>
-          </Grid> */}
         </Grid>
       </Container>
     </Typography>

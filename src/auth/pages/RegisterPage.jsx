@@ -1,8 +1,7 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect } from "react"
 import { Link as RouterLink, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 
-import { registerUserWithEmailPassword } from "../../firebase/providers"
 
 import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
 
@@ -11,30 +10,28 @@ import { AuthContext } from "../../Context/AuthContext"
 
 export const RegisterPage = () => {
 
-  const {setUser} = useContext(AuthContext);
+  const {Auth, error, registerUser} = useContext(AuthContext);
 
   const navigate = useNavigate();
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  useEffect(() => {
 
-  const [error, setError] = useState()
-
-  const onSubmit = async (data) => {
-    const { email, password, name:displayName } = data;
-    const resp = await registerUserWithEmailPassword(email, password, displayName);
-    if(resp.ok) {
-      setUser(resp);
+    if(Auth){
       navigate('/home');
     }
-    else {
-      setError(resp.errorMessage);
-      console.log(resp);
-    }
+
+  }, [Auth])
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = async (data) => {
+    await registerUser(data);
   }
 
 
   return (
     <AuthLayout title='Crear una cuenta'>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container>
 

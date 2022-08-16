@@ -55,7 +55,7 @@ export const NavBar = () => {
     setAnchorElUser(null);
     logoutFirebase();
     setUser({});
-  };
+  };  
 
 
 
@@ -123,26 +123,6 @@ export const NavBar = () => {
               ))}
             </Menu>
           </Box>
-
-          {/* --------------------Responsive Styles --------------------*/}
-
-          <Typography
-            variant="h5"
-            noWrap
-            cursor='none'
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            PcParts
-          </Typography>
           
           {/*  ---------------------Finish Responsive Styles--------------------------- */}
 
@@ -188,9 +168,9 @@ export const NavBar = () => {
           
 
           <Box sx={{ flexGrow: 0 }}>
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+            <Box sx={{ display: { xs: 'flex' }, alignItems: 'center' }}>
               {
-                  displayName && <Typography sx={{fontSize: '20px', mr: 3 }} >{`${displayName}`}</Typography>
+                  displayName && <Typography sx={{fontSize: '20px', mr: 3, display: { xs: 'none', md: 'flex' }  }} >{`${displayName}`}</Typography>
               }
               
               <Tooltip title="ShoppingCartIcon">

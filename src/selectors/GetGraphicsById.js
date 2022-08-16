@@ -3,7 +3,6 @@ import { doc, getDoc } from "firebase/firestore";
 import { FirebaseDB } from "../firebase/config";
 
 export const GetGraphicsById = ( id = '' , category = '' ) => {
-    // const {data , isLoading} = useFetch();
 
     const [state, setState] = useState({
         data: {},

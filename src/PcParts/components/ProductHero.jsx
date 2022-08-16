@@ -1,6 +1,5 @@
 import { Link as RouterLink } from "react-router-dom";
 
-
 import { Button, Typography } from "@mui/material"
 import ProductLayout from "../layout/ProductLayout";
 
