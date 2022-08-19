@@ -1,6 +1,7 @@
 # PC Parts
 
 ## Descripcion
+![](https://github.com/josafath597/PcPartsCardenas/blob/main/PC.gif)
 
 #### Es un proyecto de Website Ecommerce utilizando React JS 
 
@@ -64,3 +65,7 @@ Se vuelve a hacer el componente en la carpeta ./src/ui/components/NavBar
 > Su sube a firebase mi coleccion llamado orders/'id dinamico' y ademas se actualiza mi datos
 
 >Se implementa hace la implementacion con la autenciacion de tanto por email y password como por google
+
+### Cambios del 18 de Agosto
+
+> Se hace la implementacion de una rama con redux y en esta rama context se hace optimizaciones de codigo
