@@ -1,6 +1,7 @@
 # PC Parts
 
 ## Descripcion
+[!image](https://github.com/josafath597/PcPartsCardenas/blob/main/PC.gif)
 
 #### Es un proyecto de Website Ecommerce utilizando React JS 
 
