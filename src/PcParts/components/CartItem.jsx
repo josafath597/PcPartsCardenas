@@ -8,7 +8,7 @@ export const CartItem = (props) => {
 
   const {name, price, image, quantity, id} = props;
 
-  const {RemoveItemCart} = useContext(CartContext);
+  const {removeItemCart} = useContext(CartContext);
 
   return (
     <List sx={{ width: '100%'}}>
@@ -33,7 +33,7 @@ export const CartItem = (props) => {
           </>
         }
         />
-          <Button variant="contained" onClick={() => RemoveItemCart(id)} sx={{bgcolor:'secondary.main', m:1}}>Eliminar</Button>
+          <Button variant="contained" onClick={() => removeItemCart(id)} sx={{bgcolor:'secondary.main', m:1}}>Eliminar</Button>
       </ListItem>
       <Divider variant="inset" component="li" bgcolor="text.main" />
     </List>

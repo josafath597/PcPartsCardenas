@@ -10,17 +10,17 @@ import { AuthContext } from "../../Context/AuthContext"
 
 export const RegisterPage = () => {
 
-  const {Auth, error, registerUser} = useContext(AuthContext);
+  const {isAuthenticated, error, registerUser} = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
 
-    if(Auth){
-      navigate('/home');
+    if(isAuthenticated){
+      navigate(-1);
     }
 
-  }, [Auth])
+  }, [isAuthenticated])
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 

@@ -11,22 +11,22 @@ import { AuthContext } from '../../Context/AuthContext'
 
 export const LoginPage = () => {
 
-  const {error , isAuthenticated, Auth, startGoogleSignIn, LoginWithEmailPassword} = useContext(AuthContext);
+  const {error , isAuthenticating, isAuthenticated, startGoogleSignIn, loginWithEmailPassword} = useContext(AuthContext);
 
   const navigate = useNavigate();
   
   useEffect(() => {
 
-    if(Auth){
-      navigate('/home');
+    if(isAuthenticated){
+      navigate(-1);
     }
 
-  }, [Auth])
+  }, [isAuthenticated])
   
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async ({email, password}) => {
-    await LoginWithEmailPassword(email, password);
+    await loginWithEmailPassword(email, password);
   }
 
   return (
@@ -101,7 +101,7 @@ export const LoginPage = () => {
             <Grid item xs={12} sm={6}>
 
 
-              <Button type="submit" variant='contained' fullWidth disabled={isAuthenticated} >
+              <Button type="submit" variant='contained' fullWidth disabled={isAuthenticating} >
                 Iniciar Sesión
               </Button>
 
@@ -109,7 +109,7 @@ export const LoginPage = () => {
 
             <Grid item xs={12} sm={6}>
                 <Button
-                  disabled={isAuthenticated}  
+                  disabled={isAuthenticating}  
                   variant='contained' 
                   fullWidth
                   onClick={startGoogleSignIn}
@@ -124,13 +124,13 @@ export const LoginPage = () => {
 
           </Grid>
           {
-            !isAuthenticated
+            !isAuthenticating
              
             && 
             
             <Grid container direction='row' justifyContent='end' sx={{}}>
               <span>No tienes cuenta?</span>
-              <Link component={ RouterLink } color='inherit' to='/auth/register' sx={{ ml:1 }} disabled={isAuthenticated}>
+              <Link component={ RouterLink } color='inherit' to='/auth/register' sx={{ ml:1 }} disabled={isAuthenticating}>
                 Registrate
               </Link>
             </Grid>

@@ -13,13 +13,13 @@ export const OpenDialog = (props) => {
 
   const {setCounter} = props;
 
-  const {AddItemCart} = useContext(CartContext);
+  const {addItemCart} = useContext(CartContext);
 
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setCounter(1);
-    AddItemCart(props);
+    addItemCart(props);
     setOpen(true);
   };
 

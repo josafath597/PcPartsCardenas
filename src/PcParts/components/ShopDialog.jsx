@@ -2,26 +2,26 @@ import { useContext, useState } from "react";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
 import PropTypes from 'prop-types';
 
-import { Box, Button, CircularProgress, Dialog, DialogActions, DialogTitle, Grid, TextField } from '@mui/material';
+import { Autocomplete, Box, Button, CircularProgress, Dialog, DialogActions, DialogTitle, Grid, TextField } from '@mui/material';
 import { CartContext } from "../../Context/CartContext";
 import { AuthContext } from "../../Context/AuthContext";
 import { useForm } from "react-hook-form";
 
 
-    const SimpleDialog = ({ onClose, open, id }) => {
+    const SimpleDialog = ({ onClose, open, id}) => {
 
-    const {RemoveAllItemCart} = useContext(CartContext);
+    const {removeAllItemCart} = useContext(CartContext);
     
     const navigate = useNavigate();
     
     const handleReturn = () => {
-      navigate(-1);
+      navigate(-2);
   }
   
     const handleClose = () => {
       handleReturn();
       onClose();
-      RemoveAllItemCart();
+      removeAllItemCart();
     };
   
   
@@ -59,7 +59,7 @@ import { useForm } from "react-hook-form";
 export const ShopDialog = () => {
 
     const {user} = useContext(AuthContext);
-    const {id, StartUploadProducts} = useContext(CartContext);
+    const {id, startUploadProducts} = useContext(CartContext);
     
     const [open, setOpen] = useState(false);
 
@@ -67,7 +67,7 @@ export const ShopDialog = () => {
 
     const handleClickOpen = async ({address, phoneNumber}) => {
         setOpen(true);
-        StartUploadProducts(user, address, phoneNumber);
+        startUploadProducts(user, address, phoneNumber);
       };
     
       const handleClose = () => {
@@ -98,6 +98,7 @@ export const ShopDialog = () => {
                   type="text" 
                   placeholder="Ejemplo: Los Angeles, CA 90210 USA" 
                   fullWidth
+                  autoComplete="off" 
                   {
                       ...register('address', {
                       required: {
@@ -107,6 +108,7 @@ export const ShopDialog = () => {
                       minLength: {
                       value: 5,
                       message: 'La direccion debe tener al menos 5 caracteres',
+                      
                       }
                       
                   })}
@@ -123,6 +125,8 @@ export const ShopDialog = () => {
                           type="text" 
                           placeholder="Telefono" 
                           fullWidth
+                          autoComplete="off" 
+
                           {
                           ...register('phoneNumber', {
                           required: {

@@ -24,9 +24,9 @@ const settings = ['Iniciar Sesión', 'Cerrar Sesión'];
 
 export const NavBar = () => {
 
-  const {ItemCartLength} = useContext(CartContext);
+  const {itemCartLength} = useContext(CartContext);
   
-  const Counter = ItemCartLength();
+  const Counter = itemCartLength();
 
   const {user, setUser} = useContext(AuthContext);
   const displayName = user !== {} ? user.displayName : 'Iniciar Sesión';

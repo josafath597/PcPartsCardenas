@@ -8,36 +8,37 @@ export const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState({})
 
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const [Auth, setAuth] = useState(true);
+    const [isAuthenticating, setIsAuthenticating] = useState(false);
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const [error, setError] = useState()
 
     const startGoogleSignIn = async () => {
-        setIsAuthenticated(true);
+        setIsAuthenticating(true);
         const resp = await singInWithGoogle();
         setUser(resp);
         if(resp.ok) {
-          setAuth(true);
+          setIsAuthenticated(true);
         }else{
-          setAuth(false);
+          setIsAuthenticated(false);
         }
-        setIsAuthenticated(false);
+        setIsAuthenticating(false);
     
     }
 
-    const LoginWithEmailPassword = async (email, password) => {
-        setIsAuthenticated(true);
+    const loginWithEmailPassword = async (email, password) => {
+        setIsAuthenticating(true);
         const resp = await startLoginWithEmailPassword(email, password);
         if(resp.ok) {
-            setAuth(true);
+            setIsAuthenticated(true);
             setUser(resp);
         }else {
-            setAuth(false);
+            setIsAuthenticated(false);
             setError(resp.errorMessage);
         }
-    setIsAuthenticated(false);
+    setIsAuthenticating(false);
     }
 
     const registerUser = async ({email, password, name:displayName}) => {
@@ -54,7 +55,7 @@ export const AuthProvider = ({children}) => {
 
 
     return (
-        <AuthContext.Provider value={{error, setUser, user, isAuthenticated, Auth, setAuth, startGoogleSignIn, LoginWithEmailPassword, registerUser }}>
+        <AuthContext.Provider value={{error, setUser, user, isAuthenticating, isAuthenticated, setIsAuthenticated, startGoogleSignIn, loginWithEmailPassword, registerUser }}>
             {children}
         </AuthContext.Provider>
     )

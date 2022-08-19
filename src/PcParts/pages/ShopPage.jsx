@@ -10,19 +10,19 @@ import { ShopDialog } from "../components/ShopDialog";
 
 export const ShopPage = () => {
 
-  const {ItemCart, RemoveAllItemCart, TotalCart} = useContext(CartContext);
-  const total = TotalCart();
+  const {itemCart, removeAllItemCart, totalCart} = useContext(CartContext);
+  const total = totalCart();
 
 
   return (
-     ItemCart.length > 0 ?
+     itemCart.length > 0 ?
 
       <Container>
         <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <Typography sx={{ color: 'primary.main', mt:3 }} variant="h2" >Carrito de Compras</Typography>
-          <Typography variant="h4" sx={{ color: 'primary.main', mt:3}}>{`Tienes ${ItemCart.length} producto(s) en tu carrito`} </Typography>
+          <Typography variant="h4" sx={{ color: 'primary.main', mt:3}}>{`Tienes ${itemCart.length} producto(s) en tu carrito`} </Typography>
           {
-            ItemCart.map(( item ) => (
+            itemCart.map(( item ) => (
               <CartItem key={item.id} {...item}/>
             ))
           }
@@ -30,7 +30,7 @@ export const ShopPage = () => {
           <Typography variant="h5" sx={{}}> Su Total a Pagar es : {total} USD </Typography>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'flex-start', width: '100%'}}>
-            <Button variant="contained" sx={{bgcolor:'secondary.main', mt:3 }} onClick={RemoveAllItemCart}>Borrar Todo</Button>
+            <Button variant="contained" sx={{bgcolor:'secondary.main', mt:3 }} onClick={removeAllItemCart}>Borrar Todo</Button>
 
           </Box>
           <ShopDialog />

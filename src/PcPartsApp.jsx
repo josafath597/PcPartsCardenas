@@ -10,9 +10,9 @@ import { useCheckingAuth } from './hooks/useCheckingAuth'
 
 export const PcPartsApp = () => {
 
-  const { setUser, setAuth } = useContext(AuthContext)
+  const { setUser, setIsAuthenticated } = useContext(AuthContext)
 
-  useCheckingAuth(setAuth, setUser);
+  useCheckingAuth(setIsAuthenticated, setUser);
   
 
 
